@@ -9,3 +9,8 @@ Web 3.0 job board for the future of the 🌎🌍🌏
 
 # Running
 Normal ass `npm run start` and BOOM 💥!
+______________
+# Testing
+* We have set it up to create a snapshot
+* If the test are failing and complaining about the snapshot not matching the stored snapshot you need to run the `npm run test:update` script
+  * this will update the snapshot and, hopefully, make the tests start running again

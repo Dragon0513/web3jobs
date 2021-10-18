@@ -17,6 +17,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
+    "test:update": "react-scripts test --updateSnapshot",
+    "test:coverage": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -40,6 +42,7 @@
   "devDependencies": {
     "autoprefixer": "^9.8.8",
     "postcss": "^7.0.39",
+    "react-test-renderer": "^17.0.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
 }
