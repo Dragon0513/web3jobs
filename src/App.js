@@ -1,42 +1,36 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
-import { supabase } from "./lib/api";
-import Auth from "./components/Auth";
+// import { supabase } from "./lib/api";
+// import Auth from "./components/Auth";
 import Home from "./components/Home";
+import About from './components/About';
+import Companies from './components/Companies';
+import PostAJob from './components/PostAJob';
+import Jobs from './components/Jobs';
 
 function App() {
-    const [user, setUser] = useState(null);
+    // const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        const session = supabase.auth.session();
-        setUser(session?.user ?? null);
+    // useEffect(() => {
+    //     const session = supabase.auth.session();
+    //     setUser(session?.user ?? null);
 
-        const { data: authListener } = supabase.auth.onAuthStateChange(
-            async (event, session) => {
-                const currentUser = session?.user;
-                setUser(currentUser ?? null);
-            }
-        );
+    //     const { data: authListener } = supabase.auth.onAuthStateChange(
+    //         async (event, session) => {
+    //             const currentUser = session?.user;
+    //             setUser(currentUser ?? null);
+    //         }
+    //     );
 
-        return () => {
-            authListener?.unsubscribe();
-        };
-    }, [user]);
-
-    function About() {
-        return (
-            <>
-                <main>
-                    <h2>Web 3.0 Jobs!</h2>
-                </main>
-            </>
-        );
-    }
+    //     return () => {
+    //         authListener?.unsubscribe();
+    //     };
+    // }, [user]);
 
     return (
         <div className="min-w-full min-h-screen flex items-center justify-center bg-gray-200">
@@ -49,14 +43,33 @@ function App() {
                         <li class="flex-1 mr-2">
                             <Link to="/about">About</Link>
                         </li>
+                        <li class="flex-1 mr-2">
+                            <Link to="/web3-companies">Companies</Link>
+                        </li>
+                        <li class="flex-1 mr-2">
+                            <Link to="/post-web3-job">Post A Job</Link>
+                        </li>
+                        <li class="flex-1 mr-2">
+                            <Link to="/jobs">Jobs</Link>
+                        </li>
                     </ul>
                 </nav>
                 <Switch>
                     <Route path="/about">
                         <About />
                     </Route>
+                    <Route path="/web3-companies">
+                        <Companies />
+                    </Route>
+                    <Route path="/post-web3-job">
+                        <PostAJob />
+                    </Route>
+                    <Route path="/jobs">
+                        <Jobs />
+                    </Route>
                     <Route path="/">
-                        {!user ? <Auth /> : <Home user={user} />}
+                        {/* {!user ? <Auth /> : <Home user={user} />} */}
+                        <Home />
                     </Route>
                 </Switch>
             </Router>
