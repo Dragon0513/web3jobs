@@ -22,8 +22,6 @@ const Companies = () => {
         else setCompanies(companies);
     };
 
-
-
     return (
         <div>
             <div className={"w-screen fixed flex flex-col min-h-screen bg-gray-50"}>
