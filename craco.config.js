@@ -8,4 +8,7 @@ module.exports = {
         ],
       },
     },
+    esLint: {
+      enable: true
+    },
   }

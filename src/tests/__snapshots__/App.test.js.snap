@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot tests Making sure it doesnt crash 1`] = `
+<div
+  className="min-w-full min-h-screen flex bg-gray-200"
+>
+  <nav
+    className="flex items-center justify-between flex-wrap bg-teal-500 p-6"
+  >
+    <ul
+      class="flex"
+    >
+      <li
+        class="flex-1 mr-2"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Home
+        </a>
+      </li>
+      <li
+        class="flex-1 mr-2"
+      >
+        <a
+          href="/about"
+          onClick={[Function]}
+        >
+          About
+        </a>
+      </li>
+      <li
+        class="flex-1 mr-2"
+      >
+        <a
+          href="/web3-companies"
+          onClick={[Function]}
+        >
+          Companies
+        </a>
+      </li>
+      <li
+        class="flex-1 mr-2"
+      >
+        <a
+          href="/post-web3-job"
+          onClick={[Function]}
+        >
+          Post A Job
+        </a>
+      </li>
+      <li
+        class="flex-1 mr-2"
+      >
+        <a
+          href="/jobs"
+          onClick={[Function]}
+        >
+          Jobs
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <h1>
+    Web 3.0 Jobs - Home Screen
+  </h1>
+</div>
+`;

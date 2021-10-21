@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot tests Making sure it doesnt crash 1`] = `
+<div>
+  <div
+    className="w-screen fixed flex flex-col min-h-screen bg-gray-50"
+  >
+    <header
+      className="flex justify-between items-center px-4 h-16 bg-gray-900"
+    >
+      <span
+        className="text-2xl sm:text-4xl text-white border-b font-sans"
+      >
+        Companies Screen
+      </span>
+    </header>
+    <div
+      className="flex flex-col flex-grow p-4"
+      style={
+        Object {
+          "height": "calc(100vh - 11.5rem)",
+        }
+      }
+    >
+      <div
+        className="p-2 border flex-grow grid gap-2  grid-cols-1 h-2/3 overflow-y-scroll first:mt-8"
+      >
+        <span
+          className="h-full flex justify-center items-center"
+        >
+          You do have any companies yet!
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
