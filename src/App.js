@@ -50,7 +50,7 @@ function App() {
                             <Link to="/post-web3-job">Post A Job</Link>
                         </li>
                         <li class="flex-1 mr-2">
-                            <Link to="/jobs">Jobs</Link>
+                            <Link to="/web3-jobs">Jobs</Link>
                         </li>
                     </ul>
                 </nav>
