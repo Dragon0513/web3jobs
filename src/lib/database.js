@@ -23,12 +23,36 @@ export const getAllJobs = () => {
 }
 
 /**
+ * function to get all jobs AND the company associated with it
+ * @returns Array with all Jobs + Company linked to them
+ */
+export const getAllJobsAndLinkedCompanies = () => {
+    return supabase
+        .from(JOBS_TABLE)
+        .select(`
+        *,
+        ${COMPANY_TABLE}(
+            *
+        )
+    `);
+}
+
+/**
  * function to get all the jobs in reverse chronology
  * ie. newest first ;) 
  * @returns Array full of all job objects
  */
 export const getAllJobsInReverseDate = () => {
     return getAllJobs().order(JOB_DATE_POSTED, { ascending: false });
+}
+
+/**
+ * function to get all the jobs in reverse chronology
+ * ie. newest first ;) 
+ * @returns Array full of all job objects
+ */
+ export const getAllJobsAndCompaniesInReverseDate = () => {
+    return getAllJobsAndLinkedCompanies().order(JOB_DATE_POSTED, { ascending: false });
 }
 
 /**
@@ -50,15 +74,7 @@ export const getAllLinkedCompanies = () => {
  * @returns Array with a Job + Company object
  */
 export const getJobAndCompanyFromId = jobId => {
-    return supabase
-        .from(JOBS_TABLE)
-        .select(`
-        *,
-        ${COMPANY_TABLE}(
-            *
-        )
-    `)
-        .match({ [JOB_ID]: jobId })
+    return getAllJobsAndLinkedCompanies().match({ [JOB_ID]: jobId })
 }
 
 //*********END OF JOBS SECTION
