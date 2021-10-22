@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { COMPANY_NAME, JOB_ID, JOB_TITLE } from "../lib/constants";
 
-import { getAllJobsInReverseDate, getAllLinkedCompanies, getJobAndCompanyFromId } from "../lib/database";
+import { getAllJobsAndCompaniesInReverseDate, getAllLinkedCompanies, getAllJobsAndLinkedCompanies } from "../lib/database";
 import { sampleJobs } from "../mockData/genJobs";
 import { isLocal } from "../util/local";
 import { removeWhiteSpace } from "../util/rmSpace";
@@ -16,20 +17,20 @@ const AllJobs = ({ match }) => {
     }, []);
 
     const fetchJobs = async () => {
-        let { data: jobs, error } = false ? sampleJobs() : await getAllJobsInReverseDate();
-        let { data: companies, err } = false ? sampleJobs() : await getAllLinkedCompanies();
-        let { data: filtered, er } = false ? sampleJobs() : await getJobAndCompanyFromId(1, 1)
-
-        console.log('Jobs', jobs, err)
-        console.log('companies', companies, err)
-        console.log('filtered', filtered, er)
-        
+        let { data: jobs, error } = await getAllJobsAndCompaniesInReverseDate();
         if (error) setError(error);
         else {
             setJobs(jobs)
             setIsLoading(false);
         };
     };
+
+    // function that will destructure the job object
+    // it pulls out the title, id and company name to be used in the URL
+    const generateLinkURL = job => {
+        const {[JOB_TITLE]: title, [JOB_ID]: id, companies: {[COMPANY_NAME]: cName}} = job;
+        return `/web3-jobs/${removeWhiteSpace(title)}-${removeWhiteSpace(cName)}/${id}`
+    }
 
     return (
         <div>
@@ -57,9 +58,9 @@ const AllJobs = ({ match }) => {
                     >
                         {jobs.length ? (
                             jobs.map((job) =>(
-                                <div key={job.jId}>
+                                <div key={job.jobId}>
                                     {/* // TODO: Fix the Company Name path  */}
-                                    <Link to={`/web3-jobs/${removeWhiteSpace(job.jobTitle)}-cbd/${job.jId}`}><h1>Job Title: {job.jobTitle}</h1></Link>
+                                    <Link to={generateLinkURL(job)}><h1>Job Title: {job.jobTitle}</h1></Link>
                                     <p>Created: {new Date(job.jobDatePosted).toDateString()}</p>
                                     <p>Description: {job.jobDescription}</p>
                                 </div>
