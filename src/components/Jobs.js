@@ -16,7 +16,7 @@ const Jobs = () => {
             await supabase
                 .from("jobs")
                 .select("*")
-                .order("id", { ascending: false });
+                .order("datePosted", { ascending: false });
 
         if (error) setError(error);
         else setJobs(jobs);
