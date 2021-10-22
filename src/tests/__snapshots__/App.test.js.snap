@@ -8,10 +8,10 @@ exports[`Snapshot tests Making sure it doesnt crash 1`] = `
     className="flex items-center justify-between flex-wrap bg-teal-500 p-6"
   >
     <ul
-      class="flex"
+      className="flex"
     >
       <li
-        class="flex-1 mr-2"
+        className="flex-1 mr-2"
       >
         <a
           href="/"
@@ -21,7 +21,7 @@ exports[`Snapshot tests Making sure it doesnt crash 1`] = `
         </a>
       </li>
       <li
-        class="flex-1 mr-2"
+        className="flex-1 mr-2"
       >
         <a
           href="/about"
@@ -31,7 +31,7 @@ exports[`Snapshot tests Making sure it doesnt crash 1`] = `
         </a>
       </li>
       <li
-        class="flex-1 mr-2"
+        className="flex-1 mr-2"
       >
         <a
           href="/web3-companies"
@@ -41,7 +41,7 @@ exports[`Snapshot tests Making sure it doesnt crash 1`] = `
         </a>
       </li>
       <li
-        class="flex-1 mr-2"
+        className="flex-1 mr-2"
       >
         <a
           href="/post-web3-job"
@@ -51,7 +51,7 @@ exports[`Snapshot tests Making sure it doesnt crash 1`] = `
         </a>
       </li>
       <li
-        class="flex-1 mr-2"
+        className="flex-1 mr-2"
       >
         <a
           href="/web3-jobs"

@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import { sampleJobs } from "../mockData/genJobs";
 import { supabase } from "../lib/api";
 import { isLocal } from "../util/local";
+import { removeWhiteSpace } from "../util/rmSpace";
 
-const Jobs = () => {
+const AllJobs = ({match}) => {
     const [jobs, setJobs] = useState([]);
     const [errorText, setError] = useState("");
 
@@ -49,7 +52,8 @@ const Jobs = () => {
                         {jobs.length ? (
                             jobs.map((job) => (
                                 <div key={job.jobId}>
-                                    <h1>Job Title: {job.title}</h1>
+                                    {/* // TODO: Fix the Company Name path  */}
+                                    <Link to={`/web3-jobs/${removeWhiteSpace(job.title)}-companyName/${job.jobId}`}><h1>Job Title: {job.title}</h1></Link>
                                     <p>Created: {new Date(job.datePosted).toDateString()}</p>
                                     <p>Description: {job.description}</p>
                                 </div>
@@ -79,4 +83,4 @@ const Jobs = () => {
     );
 }
 
-export default Jobs;
+export default AllJobs;
