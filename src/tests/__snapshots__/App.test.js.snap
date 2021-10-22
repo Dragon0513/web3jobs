@@ -54,7 +54,7 @@ exports[`Snapshot tests Making sure it doesnt crash 1`] = `
         class="flex-1 mr-2"
       >
         <a
-          href="/jobs"
+          href="/web3-jobs"
           onClick={[Function]}
         >
           Jobs

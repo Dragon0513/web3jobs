@@ -64,7 +64,7 @@ function App() {
                     <Route path="/post-web3-job">
                         <PostAJob />
                     </Route>
-                    <Route path="/jobs">
+                    <Route path="/web3-jobs">
                         <Jobs />
                     </Route>
                     <Route path="/">

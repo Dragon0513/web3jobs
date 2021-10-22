@@ -48,8 +48,8 @@ const Jobs = () => {
                     >
                         {jobs.length ? (
                             jobs.map((job) => (
-                                <div>
-                                    <h1 key={job.jobId}>Job Title: {job.title}</h1>
+                                <div key={job.jobId}>
+                                    <h1>Job Title: {job.title}</h1>
                                     <p>Created: {new Date(job.datePosted).toDateString()}</p>
                                     <p>Description: {job.description}</p>
                                 </div>
