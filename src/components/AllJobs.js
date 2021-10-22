@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { COMPANY_NAME, JOB_ID, JOB_TITLE } from "../lib/constants";
 
-import { getAllJobsAndCompaniesInReverseDate, getAllLinkedCompanies, getAllJobsAndLinkedCompanies } from "../lib/database";
-import { sampleJobs } from "../mockData/genJobs";
-import { isLocal } from "../util/local";
+import { getAllJobsAndCompaniesInReverseDate} from "../lib/database";
 import { removeWhiteSpace } from "../util/rmSpace";
 
-const AllJobs = ({ match }) => {
+const AllJobs = () => {
     const [jobs, setJobs] = useState([]);
     const [errorText, setError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
@@ -16,6 +14,7 @@ const AllJobs = ({ match }) => {
         fetchJobs().catch(console.error);
     }, []);
 
+    // function to pull the data from the DB
     const fetchJobs = async () => {
         let { data: jobs, error } = await getAllJobsAndCompaniesInReverseDate();
         if (error) setError(error);
@@ -24,6 +23,13 @@ const AllJobs = ({ match }) => {
             setIsLoading(false);
         };
     };
+
+    // history object to push data to job pages
+    const history = useHistory();
+
+    const pushDataToJobPage = job => {
+        history.push(generateLinkURL(job), job);
+    }
 
     // function that will destructure the job object
     // it pulls out the title, id and company name to be used in the URL
@@ -60,7 +66,7 @@ const AllJobs = ({ match }) => {
                             jobs.map((job) =>(
                                 <div key={job.jobId}>
                                     {/* // TODO: Fix the Company Name path  */}
-                                    <Link to={generateLinkURL(job)}><h1>Job Title: {job.jobTitle}</h1></Link>
+                                    <Link to={{pathname:generateLinkURL(job), state:{job:job}}}><h1>Job Title: {job.jobTitle}</h1></Link>
                                     <p>Created: {new Date(job.jobDatePosted).toDateString()}</p>
                                     <p>Description: {job.jobDescription}</p>
                                 </div>

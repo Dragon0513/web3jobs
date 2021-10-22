@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const JobPage = ({ match }) => {
+const JobPage = (job) => {
     const [isLoading, setIsLoading] = useState(true);
     // const [data, setData] = useState();
 
+    console.log(job);
+
     const {
         params: { jid, jtitle },
-    } = match;
+    } = job.match;
 
     useEffect(() => {
     }, []);
