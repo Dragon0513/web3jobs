@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { getAllJobsInReverseDate, getAllLinkedCompanies } from "../lib/database";
+import { getAllJobsInReverseDate, getAllLinkedCompanies, getJobAndCompanyFromId } from "../lib/database";
 import { sampleJobs } from "../mockData/genJobs";
 import { isLocal } from "../util/local";
 import { removeWhiteSpace } from "../util/rmSpace";
@@ -18,8 +18,12 @@ const AllJobs = ({ match }) => {
     const fetchJobs = async () => {
         let { data: jobs, error } = false ? sampleJobs() : await getAllJobsInReverseDate();
         let { data: companies, err } = false ? sampleJobs() : await getAllLinkedCompanies();
+        let { data: filtered, er } = false ? sampleJobs() : await getJobAndCompanyFromId(1, 1)
 
+        console.log('Jobs', jobs, err)
         console.log('companies', companies, err)
+        console.log('filtered', filtered, er)
+        
         if (error) setError(error);
         else {
             setJobs(jobs)
@@ -55,7 +59,7 @@ const AllJobs = ({ match }) => {
                             jobs.map((job) =>(
                                 <div key={job.jId}>
                                     {/* // TODO: Fix the Company Name path  */}
-                                    <Link to={`/web3-jobs/${removeWhiteSpace(job.jobTitle)}-companyName/${job.jobId}`}><h1>Job Title: {job.jobTitle}</h1></Link>
+                                    <Link to={`/web3-jobs/${removeWhiteSpace(job.jobTitle)}-cbd/${job.jId}`}><h1>Job Title: {job.jobTitle}</h1></Link>
                                     <p>Created: {new Date(job.jobDatePosted).toDateString()}</p>
                                     <p>Description: {job.jobDescription}</p>
                                 </div>
