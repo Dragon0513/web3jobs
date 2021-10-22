@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { COMPANY_NAME, JOB_ID, JOB_TITLE } from "../lib/constants";
 
 import { getAllJobsAndCompaniesInReverseDate} from "../lib/database";
@@ -23,13 +23,6 @@ const AllJobs = () => {
             setIsLoading(false);
         };
     };
-
-    // history object to push data to job pages
-    const history = useHistory();
-
-    const pushDataToJobPage = job => {
-        history.push(generateLinkURL(job), job);
-    }
 
     // function that will destructure the job object
     // it pulls out the title, id and company name to be used in the URL
