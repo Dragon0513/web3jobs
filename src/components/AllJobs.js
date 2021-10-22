@@ -1,28 +1,30 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import { getAllJobsInReverseDate, getCompanies, getAllJobs } from "../lib/database";
 import { sampleJobs } from "../mockData/genJobs";
-import { supabase } from "../lib/api";
 import { isLocal } from "../util/local";
 import { removeWhiteSpace } from "../util/rmSpace";
 
-const AllJobs = ({match}) => {
+const AllJobs = ({ match }) => {
     const [jobs, setJobs] = useState([]);
     const [errorText, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetchJobs().catch(console.error);
     }, []);
 
     const fetchJobs = async () => {
-        let { data: jobs, error } = isLocal ? sampleJobs() :
-            await supabase
-                .from("jobs")
-                .select("*")
-                .order("datePosted", { ascending: false });
+        let { data: jobs, error } = false ? sampleJobs() : await getAllJobsInReverseDate();
+        let { data: companies, err } = false ? sampleJobs() : await getCompanies();
 
+        console.log('companies', companies, err)
         if (error) setError(error);
-        else setJobs(jobs);
+        else {
+            setJobs(jobs)
+            setIsLoading(false);
+        };
     };
 
     return (
@@ -58,13 +60,13 @@ const AllJobs = ({match}) => {
                                     <p>Description: {job.description}</p>
                                 </div>
                             ))
-                        ) : (
+                        ) :(
                             <span
                                 className={
                                     "h-full flex justify-center items-center"
                                 }
                             >
-                                You do have any jobs yet!
+                                {isLoading ? 'Loading...' : 'You do have any jobs yet!'}
                             </span>
                         )}
                     </div>
