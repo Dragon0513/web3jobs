@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { getAllJobsInReverseDate, getCompanies, getAllJobs } from "../lib/database";
+import { getAllJobsInReverseDate, getAllLinkedCompanies } from "../lib/database";
 import { sampleJobs } from "../mockData/genJobs";
 import { isLocal } from "../util/local";
 import { removeWhiteSpace } from "../util/rmSpace";
@@ -17,7 +17,7 @@ const AllJobs = ({ match }) => {
 
     const fetchJobs = async () => {
         let { data: jobs, error } = false ? sampleJobs() : await getAllJobsInReverseDate();
-        let { data: companies, err } = false ? sampleJobs() : await getCompanies();
+        let { data: companies, err } = false ? sampleJobs() : await getAllLinkedCompanies();
 
         console.log('companies', companies, err)
         if (error) setError(error);
@@ -52,12 +52,12 @@ const AllJobs = ({ match }) => {
                             } grid-cols-1 h-2/3 overflow-y-scroll first:mt-8`}
                     >
                         {jobs.length ? (
-                            jobs.map((job) => (
-                                <div key={job.jobId}>
+                            jobs.map((job) =>(
+                                <div key={job.jId}>
                                     {/* // TODO: Fix the Company Name path  */}
-                                    <Link to={`/web3-jobs/${removeWhiteSpace(job.title)}-companyName/${job.jobId}`}><h1>Job Title: {job.title}</h1></Link>
-                                    <p>Created: {new Date(job.datePosted).toDateString()}</p>
-                                    <p>Description: {job.description}</p>
+                                    <Link to={`/web3-jobs/${removeWhiteSpace(job.jobTitle)}-companyName/${job.jobId}`}><h1>Job Title: {job.jobTitle}</h1></Link>
+                                    <p>Created: {new Date(job.jobDatePosted).toDateString()}</p>
+                                    <p>Description: {job.jobDescription}</p>
                                 </div>
                             ))
                         ) :(

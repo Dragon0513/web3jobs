@@ -1,5 +1,13 @@
 import { supabase } from "./api";
-import { JOBS_TABLE, JOBS_POST_TABLE, COMPANY_TABLE, PRICE_TABLE, JOB_TITLE, JOB_DATE_POSTED } from "./constants";
+import {
+    JOBS_TABLE,
+    JOBS_POST_TABLE,
+    COMPANY_TABLE,
+    PRICE_TABLE,
+    JOB_TITLE,
+    JOB_DATE_POSTED,
+    COMPANY_NAME,
+} from "./constants";
 
 //*********JOBS SECTION
 export const getAllJobs = () => {
@@ -11,16 +19,15 @@ export const getAllJobs = () => {
 // function to get all the jobs in reverse chronology
 // ie. newest first ;) 
 export const getAllJobsInReverseDate = () => {
-    return getAllJobs().order("datePosted", { ascending: false });
+    return getAllJobs().order(JOB_DATE_POSTED, { ascending: false });
 }
 
-export const getCompanies = () => {
+export const getAllLinkedCompanies = () => {
     return supabase
-        .from('jobs')
+        .from(JOBS_TABLE)
         .select(`
-        title,
-        companies (
-            companiesId
+        ${COMPANY_TABLE}(
+            *
         )`)
 }
 
