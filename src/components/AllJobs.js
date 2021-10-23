@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { COMPANY_NAME, JOB_ID, JOB_TITLE } from "../lib/constants";
 
-import { getAllJobsAndCompaniesInReverseDate} from "../lib/database";
+import { getAllJobsAndCompaniesInReverseDate} from "../lib/db";
 import { removeWhiteSpace } from "../util/rmSpace";
 
 const AllJobs = () => {

@@ -1,15 +1,12 @@
-import { supabase } from "./api";
+import { supabase } from "../api";
 import {
     JOBS_TABLE,
     JOBS_POST_TABLE,
     COMPANY_TABLE,
-    PRICE_TABLE,
     JOB_TITLE,
     JOB_DATE_POSTED,
-    COMPANY_NAME,
     JOB_ID,
-    TAGS_TABLE,
-} from "./constants";
+} from "../constants";
 
 //*********JOBS SECTION
 
@@ -17,7 +14,7 @@ import {
  * function to get all the jobs
  * @returns Array full of all job objects
  */
-export const getAllJobs = () => {
+ export const getAllJobs = () => {
     return supabase
         .from(JOBS_TABLE)
         .select("*");
@@ -79,19 +76,3 @@ export const getJobAndCompanyFromId = jobId => {
 }
 
 //*********END OF JOBS SECTION
-
-
-
-//*********TAGS SECTION
-
-/**
- * function to get all the jobs
- * @returns Array full of all job objects
- */
- export const getAllTags = () => {
-    return supabase
-        .from(TAGS_TABLE)
-        .select("*");
-}
-
-//*********END OF FOOTER SECTION
