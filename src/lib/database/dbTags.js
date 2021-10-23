@@ -1,4 +1,5 @@
 import { supabase } from "../api";
+import { getAll } from "./dbCommon";
 import {
     TAGS_TABLE
 } from "../constants";
@@ -10,9 +11,7 @@ import {
  * @returns Array full of all job objects
  */
  export const getAllTags = () => {
-    return supabase
-        .from(TAGS_TABLE)
-        .select("*");
+    return getAll(TAGS_TABLE);
 }
 
 //*********END OF TAGS SECTION

@@ -1,4 +1,5 @@
 import { supabase } from "../api";
+import { getAll } from "./dbCommon";
 import {
     JOBS_TABLE,
     JOBS_POST_TABLE,
@@ -15,9 +16,7 @@ import {
  * @returns Array full of all job objects
  */
  export const getAllJobs = () => {
-    return supabase
-        .from(JOBS_TABLE)
-        .select("*");
+    return getAll(JOBS_TABLE);
 }
 
 /**

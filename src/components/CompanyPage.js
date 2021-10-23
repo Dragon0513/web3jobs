@@ -1,31 +1,26 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
+    COMPANIES_URL,
     COMPANY_APPLICATION_URL,
+    COMPANY_DESCRIPTION,
     COMPANY_NAME,
-    COMPANY_URL,
-    JOBS_URL,
-    JOB_DESCRIPTION,
-    JOB_TITLE
-} from "../lib/constants";
+    COMPANY_URL
+}
+    from "../lib/constants";
 
-const JobPage = job => {
-    const [isLoading, setIsLoading] = useState(true);
-
+const CompanyPage = company => {
     const {
         location: {
             state: {
-                job: {
-                    [JOB_TITLE]: jTitle,
-                    [JOB_DESCRIPTION]: jDesc,
-                    companies: {
-                        [COMPANY_APPLICATION_URL]: cAppUrl,
-                        [COMPANY_NAME]: cName
-                    }
+                company: {
+                    [COMPANY_NAME]: cName,
+                    [COMPANY_DESCRIPTION]: cDesc,
+                    [COMPANY_URL]: cUrl
                 }
             }
         }
-    } = job;
+    } = company;
 
     return (
         <div>
@@ -40,22 +35,20 @@ const JobPage = job => {
                             "text-2xl sm:text-4xl text-white border-b font-sans"
                         }
                     >
-                        Job Title:{`${jTitle}`}
+                        Company Name: {`${cName}`}
                     </span>
                 </header>
                 <p>
-                    Description: {`${jDesc}`}
+                    Description: {`${cDesc}`}
                 </p>
                 <p>
-                    Apply URL: {`${cAppUrl}`}
+                    Website: {`${cUrl}`}
                 </p>
 
-                <Link to={JOBS_URL}>Back to All Jobs</Link>
-                {/*UPDATE THIS URL PATH TO POINT TO COMPANY PAGE*/}
-                <Link to={COMPANY_URL}>More jobs with {`${cName}`}</Link>
+                <Link to={COMPANIES_URL}>Back to All Companies</Link>
             </div>
         </div>
     );
 };
 
-export default JobPage;
+export default CompanyPage;

@@ -1,26 +1,39 @@
 import { useState, useEffect } from "react";
-import { sampleCompanies } from "../mockData/genCompanies.js";
-import { supabase } from "../lib/api";
-import { isLocal } from "../util/local";
+import { Link } from "react-router-dom";
+import { getAllCompaniesInAlphabetic } from "../lib/db";
+import {
+    COMPANIES_URL,
+    COMPANY_DESCRIPTION,
+    COMPANY_ID,
+    COMPANY_NAME
+} from "../lib/constants";
+import { makeFriendlyUrl } from "../util/sanitize";
 
 const Companies = () => {
     const [companies, setCompanies] = useState([]);
     const [errorText, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetchCompanies().catch(console.error);
     }, []);
 
     const fetchCompanies = async () => {
-        let { data: companies, error } =
-            await supabase
-                .from("companies")
-                .select("*")
-                .order("cId", { ascending: false });
-
+        let { data: companies, error } = await getAllCompaniesInAlphabetic();
         if (error) setError(error);
-        else setCompanies(companies);
+        else {
+            setCompanies(companies)
+            setIsLoading(false);
+        };
     };
+
+    // function that will destructure the company object
+    // it pulls out XXX to be used in the URL
+    const generateLinkURL = company => {
+        const { [COMPANY_NAME]: cName } = company;
+        // return `${JOBS_URL}/${removeWhiteSpace(title)}-${removeWhiteSpace(cName)}/${id}`
+        return `${COMPANIES_URL}/${makeFriendlyUrl(cName)}`
+    }
 
     return (
         <div>
@@ -35,7 +48,7 @@ const Companies = () => {
                             "text-2xl sm:text-4xl text-white border-b font-sans"
                         }
                     >
-                        Companies Screen
+                        Web 3.0 Companies
                     </span>
                 </header>
                 <div
@@ -47,8 +60,14 @@ const Companies = () => {
                             } grid-cols-1 h-2/3 overflow-y-scroll first:mt-8`}
                     >
                         {companies.length ? (
-                            companies.map((company) => (
-                                <h1 key={company.companyId}>Company Name: {company.companyName}</h1>
+                            companies.map(company => (
+                                <div>
+                                    <Link to={{ pathname: generateLinkURL(company), state: { company } }}>
+                                        <h1 key={company[COMPANY_ID]}>Company Name: {company[COMPANY_NAME]}</h1>
+                                    </Link>
+
+                                    <p>Description: {company[COMPANY_DESCRIPTION]}</p>
+                                </div>
                             ))
                         ) : (
                             <span
@@ -56,7 +75,7 @@ const Companies = () => {
                                     "h-full flex justify-center items-center"
                                 }
                             >
-                                You do have any companies yet!
+                                {isLoading ? 'Loading...' : 'No companies! 👀'}
                             </span>
                         )}
                     </div>

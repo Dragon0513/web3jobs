@@ -27,3 +27,11 @@ export const COMPANY_APPLICATION_URL = 'cApplicationUrl';
 export const TAGS_TABLE = 'tags';
 export const TAGS_ID = 'tagId';
 export const TAGS_NAME = 'tagName';
+
+// URL PATHS
+export const COMPANIES_URL = '/web3-companies'
+export const COMPANY_PAGE_URL = `${COMPANIES_URL}/:cname`
+export const JOBS_URL = '/web3-jobs'
+export const JOB_PAGE_URL = `${JOBS_URL}/:jtitle-:cname/:jid`
+export const POST_A_JOB_URL = '/post-web3-job'
+export const ABOUT_URL = '/about-web3-jobs'
