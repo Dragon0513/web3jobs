@@ -8,6 +8,7 @@ import {
     JOB_DATE_POSTED,
     COMPANY_NAME,
     JOB_ID,
+    TAGS_TABLE,
 } from "./constants";
 
 //*********JOBS SECTION
@@ -78,3 +79,19 @@ export const getJobAndCompanyFromId = jobId => {
 }
 
 //*********END OF JOBS SECTION
+
+
+
+//*********TAGS SECTION
+
+/**
+ * function to get all the jobs
+ * @returns Array full of all job objects
+ */
+ export const getAllTags = () => {
+    return supabase
+        .from(TAGS_TABLE)
+        .select("*");
+}
+
+//*********END OF FOOTER SECTION

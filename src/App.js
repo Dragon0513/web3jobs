@@ -1,12 +1,9 @@
-// import { useState, useEffect } from "react";
 import {
     BrowserRouter as Router,
-    Switch,
     Route,
-    Link
+    Link,
+    Switch
 } from "react-router-dom";
-// import { supabase } from "./lib/api";
-// import Auth from "./components/Auth";
 import Home from "./components/Home";
 import About from './components/About';
 import Companies from './components/Companies';
@@ -14,6 +11,7 @@ import PostAJob from './components/PostAJob';
 import AllJobs from './components/AllJobs';
 import JobPage from './components/JobPage';
 import NotFound from './components/NotFound';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -39,32 +37,35 @@ function App() {
                         </li>
                     </ul>
                 </nav>
-                <Route exact path="/about">
-                    <About />
-                </Route>
-                <Route exact path="/web3-companies">
-                    <Companies />
-                </Route>
-                <Route exact path="/post-web3-job">
-                    <PostAJob />
-                </Route>
-{/*
-    <Route exact component="/404">
+                <Switch>
+
+                    <Route exact path="/about">
+                        <About />
+                    </Route>
+                    <Route exact path="/web3-companies">
+                        <Companies />
+                    </Route>
+                    <Route exact path="/post-web3-job">
+                        <PostAJob />
+                    </Route>
+
+                    {/* 
+                    TODO: Implement
+                    <Route>
                         <NotFound />
                     </Route> 
-*/
-}
-                
-              
-
-                <Route path="/web3-jobs">
-                    <AllJobs />
-                </Route>
-                <Route path="/web3-jobs/:jtitle-:cname/:jid" component={JobPage} />
-                <Route path="/">
-                    <Home />
-                </Route>
+                    */}
+                    <Route path="/web3-jobs/:jtitle-:cname/:jid" component={JobPage} />
+                    <Route path="/web3-jobs">
+                        <AllJobs />
+                    </Route>
+                    <Route path="/">
+                        <Home />
+                    </Route>
+                </Switch>
             </Router>
+
+            <Footer />
         </div>
     );
 }

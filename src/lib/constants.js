@@ -22,3 +22,8 @@ export const COMPANY_EMAIL = 'cEmail';
 export const COMPANY_NAME = 'cName';
 export const COMPANY_URL = 'cUrl';
 export const COMPANY_APPLICATION_URL = 'cApplicationUrl';
+
+// Database Tags Table
+export const TAGS_TABLE = 'tags';
+export const TAGS_ID = 'tagId';
+export const TAGS_NAME = 'tagName';
