@@ -37,7 +37,7 @@ function App() {
                         </li>
                     </ul>
                 </nav>
-                {/* <Switch> */}
+                <Switch>
                     <Route exact path="/about">
                         <About />
                     </Route>
@@ -62,7 +62,7 @@ function App() {
                     <Route path="/">
                         <Home />
                     </Route>
-                {/* </Switch> */}
+                </Switch>
             </Router>
         </div>
     );
