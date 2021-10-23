@@ -12,11 +12,11 @@ const Companies = () => {
     }, []);
 
     const fetchCompanies = async () => {
-        let { data: companies, error } = isLocal ? sampleCompanies() :
+        let { data: companies, error } =
             await supabase
                 .from("companies")
                 .select("*")
-                .order("id", { ascending: false });
+                .order("cId", { ascending: false });
 
         if (error) setError(error);
         else setCompanies(companies);

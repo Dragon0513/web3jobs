@@ -1,11 +1,11 @@
 function createCompanyObject(name, num){
     return{
-        url: `www.${name}${num}.com`,
-        email: `${name}@${num}.com`,
-        companyName: `${name}-${num}`,
-        description: `${name} Description!`,
-        applicationURL: `www.${name}${num}.com/applyHere`,
-        companyId: genNum()
+        cUrl: `www.${name}${num}.com`,
+        cDmail: `${name}@${num}.com`,
+        cName: `${name}-${num}`,
+        cDescription: `${name} Description!`,
+        cApplicationUrl: `www.${name}${num}.com/applyHere`,
+        cId: genNum()
     }
 }
 

@@ -37,32 +37,30 @@ function App() {
                         </li>
                     </ul>
                 </nav>
-                {/* <Switch> */}
-                    <Route exact path="/about">
-                        <About />
-                    </Route>
-                    <Route exact path="/web3-companies">
-                        <Companies />
-                    </Route>
-                    <Route exact path="/post-web3-job">
-                        <PostAJob />
-                    </Route>
+                <Route exact path="/about">
+                    <About />
+                </Route>
+                <Route exact path="/web3-companies">
+                    <Companies />
+                </Route>
+                <Route exact path="/post-web3-job">
+                    <PostAJob />
+                </Route>
 
-                    {/* 
+                {/* 
                     TODO: Implement
                     <Route>
                         <NotFound />
                     </Route> 
                     */}
 
-                    <Route path="/web3-jobs">
-                        <AllJobs />
-                    </Route>
-                    <Route path="/web3-jobs/:jtitle-:cname/:jid" component={JobPage} />
-                    <Route path="/">
-                        <Home />
-                    </Route>
-                {/* </Switch> */}
+                <Route path="/web3-jobs">
+                    <AllJobs />
+                </Route>
+                <Route path="/web3-jobs/:jtitle-:cname/:jid" component={JobPage} />
+                <Route path="/">
+                    <Home />
+                </Route>
             </Router>
         </div>
     );

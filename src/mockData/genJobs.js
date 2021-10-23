@@ -351,14 +351,14 @@ const jobTitles = [
     "Youth worker"
 ];
 
-function createJobObject(num, companyId){
-    const title = randomItemFrom(jobTitles);
+function createJobObject(num, cId){
+    const jobTitle = randomItemFrom(jobTitles);
     return{
-        title,
-        datePosted: randomUTCDate(),
+        jobTitle,
+        jobDatePosted: randomUTCDate(),
         location: `Location -${num}`,
-        description: `Job description for ${title}`,
-        tags: [
+        jobDescription: `Job description for ${jobTitle}`,
+        jobTags: [
             'Python',
             'JavaScript',
             'Java',
@@ -371,7 +371,7 @@ function createJobObject(num, companyId){
             'PHP',
         ],
         jobId: genNum(),
-        companyId
+        cId
     }
 }
 
@@ -394,8 +394,8 @@ export const sampleJobs = () => {
 
     for( let i = 0; i < 20; i++ ){
         const {data: companies} = sampleCompanies()
-        const companyId = companies[i].companyId;
-        jobs[i] = createJobObject(i, companyId);
+        const cId = companies[i].cId;
+        jobs[i] = createJobObject(i, cId);
     }
 
     return {data: jobs};

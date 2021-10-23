@@ -1,16 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { COMPANY_APPLICATION_URL, COMPANY_NAME, JOB_DESCRIPTION, JOB_TITLE } from "../lib/constants";
 
-const JobPage = ({ match }) => {
+const JobPage = job => {
     const [isLoading, setIsLoading] = useState(true);
     // const [data, setData] = useState();
 
-    const {
-        params: { jid, jtitle },
-    } = match;
+    console.log(job);
 
-    useEffect(() => {
-    }, []);
+    const {
+        location: {
+            state: {
+                job: {
+                    [JOB_TITLE]: jTitle,
+                    [JOB_DESCRIPTION]: jDesc,
+                    companies:{
+                        [COMPANY_APPLICATION_URL]: cAppUrl,
+                        [COMPANY_NAME]: cName
+                    }
+                }
+            }
+        }
+    } = job;
 
     return (
         <div>
@@ -25,10 +36,18 @@ const JobPage = ({ match }) => {
                             "text-2xl sm:text-4xl text-white border-b font-sans"
                         }
                     >
-                        Job Title:{`${jtitle}`}
+                        Job Title:{`${jTitle}`}
                     </span>
                 </header>
+                <p>
+                    Description: {`${jDesc}`}
+                </p>
+                <p>
+                    Apply URL: {`${cAppUrl}`}
+                </p>
+
                 <Link to="/web3-jobs">Back to All Jobs</Link>
+                <Link to="/web3-jobs">More jobs with {`${cName}`}</Link>
             </div>
         </div>
     );
