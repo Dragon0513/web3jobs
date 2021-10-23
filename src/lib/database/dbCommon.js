@@ -5,7 +5,7 @@ import { supabase } from "../api";
  * @param table - Table to pull from!
  * @returns Array full of all objects from the given table
  */
- export const getAll = table => {
+export const getAll = table => {
     return supabase
         .from(table)
         .select("*");

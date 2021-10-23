@@ -1,10 +1,10 @@
 import { supabase } from "../api";
-import { getAll } from "./dbCommon";
+import {
+    getAll,
+} from "./dbCommon";
 import {
     JOBS_TABLE,
-    JOBS_POST_TABLE,
     COMPANY_TABLE,
-    JOB_TITLE,
     JOB_DATE_POSTED,
     JOB_ID,
 } from "../constants";
@@ -15,7 +15,7 @@ import {
  * function to get all the jobs
  * @returns Array full of all job objects
  */
- export const getAllJobs = () => {
+export const getAllJobs = () => {
     return getAll(JOBS_TABLE);
 }
 
@@ -48,21 +48,8 @@ export const getAllJobsInReverseDate = () => {
  * ie. newest first ;) 
  * @returns Array full of all job objects
  */
- export const getAllJobsAndCompaniesInReverseDate = () => {
+export const getAllJobsAndCompaniesInReverseDate = () => {
     return getAllJobsAndLinkedCompanies().order(JOB_DATE_POSTED, { ascending: false });
-}
-
-/**
- * function to get all companies that are assocaited with a job
- * @returns Array full of all Jobs and All companies
- */
-export const getAllLinkedCompanies = () => {
-    return supabase
-        .from(JOBS_TABLE)
-        .select(`
-        ${COMPANY_TABLE}(
-            *
-        )`)
 }
 
 /**
@@ -72,6 +59,19 @@ export const getAllLinkedCompanies = () => {
  */
 export const getJobAndCompanyFromId = jobId => {
     return getAllJobsAndLinkedCompanies().match({ [JOB_ID]: jobId })
+}
+
+/**
+ * function to get all companies that are assocaited with a job
+ * @returns Array full of all Jobs and All companies
+ */
+ export const getAllLinkedCompanies = () => {
+    return supabase
+        .from(JOBS_TABLE)
+        .select(`
+        ${COMPANY_TABLE}(
+            *
+        )`)
 }
 
 //*********END OF JOBS SECTION
