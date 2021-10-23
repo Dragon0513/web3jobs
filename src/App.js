@@ -13,6 +13,8 @@ import Companies from './components/Companies';
 import PostAJob from './components/PostAJob';
 import AllJobs from './components/AllJobs';
 import JobPage from './components/JobPage';
+import NotFound from './components/NotFound';
+
 
 function App() {
     return (
@@ -46,13 +48,14 @@ function App() {
                 <Route exact path="/post-web3-job">
                     <PostAJob />
                 </Route>
-
-                {/* 
-                    TODO: Implement
-                    <Route>
+{/*
+    <Route exact component="/404">
                         <NotFound />
                     </Route> 
-                    */}
+*/
+}
+                
+              
 
                 <Route path="/web3-jobs">
                     <AllJobs />
