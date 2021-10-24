@@ -1,10 +1,9 @@
 import { supabase } from '../api';
-import { getAll } from './dbCommon';
+import { getAll, getAllJobsAndLinkedCompanies } from './dbCommon';
 import {
     COMPANY_ID,
     COMPANY_NAME,
     COMPANY_TABLE,
-    JOBS_TABLE
 } from "../constants";
 
 //*********COMPANIES SECTION
@@ -31,9 +30,7 @@ export const getAllCompaniesInAlphabetic = () => {
  * @returns 
  */
 export const getLinkedJobs = companyId => {
-    return supabase
-        .from(JOBS_TABLE)
-        .select("*").match({ [COMPANY_ID]: companyId });
+    return getAllJobsAndLinkedCompanies().match({ [COMPANY_ID]: companyId });
 }
 
 //*********END OF COMPANIES SECTION

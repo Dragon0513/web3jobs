@@ -4,7 +4,6 @@ import {
     Route,
     Link
 } from "react-router-dom";
-import { useState, useEffect } from "react";
 import Home from "./Home";
 import About from './About';
 import Companies from './Companies';

@@ -1,6 +1,6 @@
 import { supabase } from "../api";
 import {
-    getAll,
+    getAll, getAllJobsAndLinkedCompanies
 } from "./dbCommon";
 import {
     JOBS_TABLE,
@@ -17,21 +17,6 @@ import {
  */
 export const getAllJobs = () => {
     return getAll(JOBS_TABLE);
-}
-
-/**
- * function to get all jobs AND the company associated with it
- * @returns Array with all Jobs + Company linked to them
- */
-export const getAllJobsAndLinkedCompanies = () => {
-    return supabase
-        .from(JOBS_TABLE)
-        .select(`
-        *,
-        ${COMPANY_TABLE}(
-            *
-        )
-    `);
 }
 
 /**
@@ -65,7 +50,7 @@ export const getJobAndCompanyFromId = jobId => {
  * function to get all companies that are assocaited with a job
  * @returns Array full of all Jobs and All companies
  */
- export const getAllLinkedCompanies = () => {
+export const getAllLinkedCompanies = () => {
     return supabase
         .from(JOBS_TABLE)
         .select(`

@@ -7,8 +7,8 @@ import {
     COMPANY_ID,
     COMPANY_NAME,
     COMPANY_URL
-}
-    from "../lib/constants";
+} from "../lib/constants";
+import JobsList from "./JobsList";
 
 const CompanyPage = company => {
     const [linkedJobs, setJobs] = useState([]);
@@ -36,7 +36,6 @@ const CompanyPage = company => {
         let { data: linkedJobs, error } = await getLinkedJobs(cId);
         if (error) setError(error);
         else {
-            console.log('linkedjobs: ', linkedJobs)
             setJobs(linkedJobs)
             setIsLoading(false);
         };
@@ -55,6 +54,10 @@ const CompanyPage = company => {
                 <p>Website: {`${cUrl}`}</p>
 
                 <Link to={COMPANIES_URL}>Back to All Companies</Link>
+
+                <h1>Current jobs 👇</h1>
+
+                <JobsList jobs={linkedJobs} isLoading/>
             </div>
         </div>
     );
