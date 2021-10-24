@@ -34,13 +34,13 @@ const NavBar = () => {
                             <Link to={ABOUT_URL}>About</Link>
                         </li>
                         <li className="flex-1 mr-2">
-                            <Link to="/web3-companies">Companies</Link>
+                            <Link to={COMPANIES_URL}>Companies</Link>
                         </li>
                         <li className="flex-1 mr-2">
-                            <Link to="/post-web3-job">Post A Job</Link>
+                            <Link to={POST_A_JOB_URL}>Post A Job</Link>
                         </li>
                         <li className="flex-1 mr-2">
-                            <Link to="/web3-jobs">Jobs</Link>
+                            <Link to={JOBS_URL}>Jobs</Link>
                         </li>
                     </ul>
                 </nav>
