@@ -7,7 +7,7 @@ import {
     COMPANY_TABLE,
     JOB_DATE_POSTED,
     JOB_ID,
-} from "../constants";
+} from "@constants/";
 
 //*********JOBS SECTION
 

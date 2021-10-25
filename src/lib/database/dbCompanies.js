@@ -1,10 +1,9 @@
-import { supabase } from '../api';
 import { getAll, getAllJobsAndLinkedCompanies } from './dbCommon';
 import {
     COMPANY_ID,
     COMPANY_NAME,
     COMPANY_TABLE,
-} from "../constants";
+} from "@constants/";
 
 //*********COMPANIES SECTION
 

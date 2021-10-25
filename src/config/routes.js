@@ -5,7 +5,7 @@ import {
     JOBS_URL,
     JOB_PAGE_URL,
     POST_A_JOB_URL
-} from "../lib/constants";
+} from "@constants/";
 import {
     AboutPage,
     AllCompaniesPage,
@@ -15,7 +15,7 @@ import {
     NotFoundPage,
     PostAJobPage,
     JobItemPage
-} from '../components/pages'
+} from '@pages/'
 
 const routes = [
     {

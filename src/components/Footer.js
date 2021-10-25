@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { TAGS_ID, TAGS_NAME } from "../lib/constants";
-import { getAllTags } from "../lib/db";
+import { TAGS_ID, TAGS_NAME } from "@constants/";
+import { getAllTags } from "@db/";
 
 const Footer = job => {
     const [tags, setTags] = useState([]);

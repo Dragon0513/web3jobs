@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { makeFriendlyUrl } from "../util/sanitize";
+import { makeFriendlyUrl } from "@util/sanitize";
 import {
     COMPANY_NAME,
     JOBS_URL,
@@ -8,7 +8,7 @@ import {
     JOB_DESCRIPTION,
     JOB_ID,
     JOB_TITLE
-} from "../lib/constants";
+} from "@constants/";
 
 // function that will destructure the job object
 // it pulls out the title, id and company name to be used in the URL

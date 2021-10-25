@@ -20,7 +20,7 @@ import {
     JOBS_URL,
     JOB_PAGE_URL,
     POST_A_JOB_URL
-} from "../lib/constants";
+} from "@constants/";
 
 const solutions = [
     {

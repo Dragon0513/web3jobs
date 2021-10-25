@@ -2,7 +2,7 @@ import { supabase } from "../api";
 import {
     JOBS_TABLE,
     COMPANY_TABLE
-} from "../constants";
+} from "@constants/";
 
 /**
  * function to get all from the Table passed in

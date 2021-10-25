@@ -6,7 +6,7 @@ import {
     JOBS_URL,
     JOB_DESCRIPTION,
     JOB_TITLE
-} from "../../lib/constants";
+} from "@constants/";
 
 const JobItemPage = job => {
     const {

@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getAllCompaniesInAlphabetic } from "../../lib/db";
+import { getAllCompaniesInAlphabetic } from "@db/";
 import {
     COMPANIES_URL,
     COMPANY_DESCRIPTION,
     COMPANY_ID,
     COMPANY_NAME
-} from "../../lib/constants";
-import { makeFriendlyUrl } from "../../util/sanitize";
+} from "@constants/";
+import { makeFriendlyUrl } from "@util/sanitize";
 
 const AllCompaniesPage = () => {
     const [companies, setCompanies] = useState([]);
