@@ -39,8 +39,8 @@ const JobPage = job => {
                         className={
                             "text-2xl sm:text-4xl text-white border-b font-sans"
                         }
-                    >
-                        Job Title:{`${jTitle}`}
+                    > Job Title:{`${jTitle}`}
+                       
                     </span>
                 </header>
                 <p>
