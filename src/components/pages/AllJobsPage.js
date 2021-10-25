@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
-import { getAllJobsAndCompaniesInReverseDate } from "../lib/db";
-import { isEmpty } from "../util";
-import JobsList from "./JobsList";
+import { getAllJobsAndCompaniesInReverseDate } from "../../lib/db";
+import { isEmpty } from "../../util";
+import JobsList from "../JobsList";
 
 
-const AllJobs = passedInJobs => {
+const AllJobsPage = () => {
     const [jobs, setJobs] = useState([]);
     const [errorText, setError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if (isEmpty(passedInJobs)) fetchJobs().catch(console.error);
-        else setJobs(passedInJobs);
+        fetchJobs().catch(console.error);
     }, []);
 
     // function to pull the data from the DB
@@ -25,8 +24,8 @@ const AllJobs = passedInJobs => {
     };
 
     return (
-        <div>
-            <div className={"w-screen fixed flex flex-col min-h-screen bg-gray-50"}>
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div>
                 <header
                     className={
                         "flex justify-between items-center px-4 h-16 bg-gray-900"
@@ -53,4 +52,4 @@ const AllJobs = passedInJobs => {
     );
 }
 
-export default AllJobs;
+export default AllJobsPage;

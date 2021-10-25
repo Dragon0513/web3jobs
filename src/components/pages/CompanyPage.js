@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getLinkedJobs } from "../lib/db";
+import { getLinkedJobs } from "../../lib/db";
 import {
     COMPANIES_URL,
     COMPANY_DESCRIPTION,
     COMPANY_ID,
     COMPANY_NAME,
     COMPANY_URL
-} from "../lib/constants";
-import JobsList from "./JobsList";
+} from "../../lib/constants";
+import JobsList from "../JobsList";
 
 const CompanyPage = company => {
     const [linkedJobs, setJobs] = useState([]);

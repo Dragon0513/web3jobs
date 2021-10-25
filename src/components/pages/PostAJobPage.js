@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
-import { supabase } from "../lib/api";
-import { isLocal } from "../util/local";
 
 const MyTextInput = ({ label, ...props }) => {
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -20,24 +18,7 @@ const MyTextInput = ({ label, ...props }) => {
     );
 };
 
-const PostAJob = () => {
-    // const [jobs, setJobs] = useState([]);
-    // const [errorText, setError] = useState("");
-
-    // useEffect(() => {
-    //     fetchJobs().catch(console.error);
-    // }, []);
-
-    // const fetchJobs = async () => {
-    //     let {data: jobs, error } = isLocal ? sampleJobs() :
-    //         await supabase
-    //             .from("jobs")
-    //             .select("*")
-    //             .order("id", {ascending: false });
-
-    //     if (error) setError(error);
-    //     else setJobs(jobs);
-    // };
+const PostAJobPage = () => {
 
     const formikForm = () => {
         return (
@@ -102,7 +83,7 @@ const PostAJob = () => {
     }
 
     return (
-        <div>
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div className={"w-screen fixed flex flex-col min-h-screen bg-gray-500"}>
                 <header
                     className={
@@ -125,4 +106,4 @@ const PostAJob = () => {
     );
 };
 
-export default PostAJob;
+export default PostAJobPage;
