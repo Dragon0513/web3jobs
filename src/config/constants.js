@@ -35,3 +35,9 @@ export const JOBS_URL = '/web3-jobs'
 export const JOB_PAGE_URL = `${JOBS_URL}/:jtitle-:cname/:jid`
 export const POST_A_JOB_URL = '/post-web3-job'
 export const ABOUT_URL = '/about-web3-jobs'
+
+// Nav Bar Link Text
+export const HOME_LINK = 'Home'
+export const COMPANIES_LINK = 'Companies'
+export const JOBS_LINK = 'Jobs'
+export const POST_JOB_LINK = 'Post A Job'

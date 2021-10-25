@@ -7,3 +7,5 @@ export const makeFriendlyUrl = name => name.toLowerCase().replace(/ /g, '-').rep
 export const isEmpty = checkMe => {
     return Object.keys(checkMe).length === 0
 }
+
+export const capitalize = word => word.charAt(0).toUpperCase() + word.slice(1)

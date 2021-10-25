@@ -4,7 +4,7 @@ import {
     COMPANY_PAGE_URL,
     JOBS_URL,
     JOB_PAGE_URL,
-    POST_A_JOB_URL
+    POST_A_JOB_URL,
 } from "@constants/";
 import {
     AboutPage,
