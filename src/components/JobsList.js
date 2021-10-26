@@ -32,8 +32,8 @@ const JobsList = ({ jobs, isLoading, tag }) => {
                         jobs.map((job) => (
                             <div className="bg-white px-4 py-5 border-b border-gray-200 sm:px-6" key={job[JOB_ID]} >
                                 <Link to={{ pathname: generateLinkURL(job), state: { job } }}><h1 className="text-lg leading-6 font-medium text-gray-900">Job Title: {job[JOB_TITLE]}</h1></Link>
-                                <p>Created: {new Date(job[JOB_DATE_POSTED]).toDateString()}</p>
-                                <p>Description: {job[JOB_DESCRIPTION]}</p>
+                                <p className="mt-1 text-sm text-gray-500">Created: {new Date(job[JOB_DATE_POSTED]).toDateString()}</p>
+                                <p className="mt-1 text-sm text-gray-500">Description: {job[JOB_DESCRIPTION]}</p>
                             </div>
                         ))
                     ) : (
