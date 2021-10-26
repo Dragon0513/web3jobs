@@ -7,6 +7,7 @@ import {
     COMPANY_TABLE,
     JOB_DATE_POSTED,
     JOB_ID,
+    JOB_TAGS
 } from "@constants/";
 
 //*********JOBS SECTION
@@ -44,6 +45,16 @@ export const getAllJobsAndCompaniesInReverseDate = () => {
  */
 export const getJobAndCompanyFromId = jobId => {
     return getAllJobsAndLinkedCompanies().match({ [JOB_ID]: jobId })
+}
+
+/**
+ * function to get all the jobs with the associated tag
+ * @param {string} tag
+ * @returns Array with a Job + Company object filtered by the tag
+ */
+ export const getJobAndCompanyFromTag = tag => {
+     console.log('tag: ', tag)
+    return getAllJobsAndLinkedCompanies().cs( JOB_TAGS, [tag, tag] )
 }
 
 /**

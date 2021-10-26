@@ -1,22 +1,48 @@
 import { useState, useEffect } from "react";
-import { getAllJobsAndCompaniesInReverseDate } from "@db/";
+import { getAllJobsAndCompaniesInReverseDate, getJobAndCompanyFromTag } from "@db/";
 import JobsList from "../JobsList";
+import { JOBS_URL } from "@config/constants";
 
 
-const AllJobsPage = passedInJobs => {
+const AllJobsPage = passedInTag => {
     const [jobs, setJobs] = useState([]);
     const [errorText, setError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
-
-    console.log('passed ', passedInJobs)
 
     useEffect(() => {
         fetchJobs().catch(console.error);
     }, []);
 
+    const isATag = () => {
+        const { location: {
+            pathname: pathname
+        } } = passedInTag
+        return pathname.length > JOBS_URL.length;
+    }
+
+    /**
+     * Starting with /web3-jobs/blockchain-jobs
+     * then split -> ['', 'web3-jobs', 'cool-blockchain-jobs' ]
+     * then last item -> 'cool-blockchain-jobs'
+     * then slice -> 'cool-blockchain'
+     * then replace -> 'cool blockchain'
+     * @returns string that is just a tag
+     */
+    const parseURLForTag = () => {
+        const { location: {
+            pathname: pathname
+        } } = passedInTag
+        const sectioned = pathname.split('/');
+        let lastItem = sectioned[sectioned.length - 1];
+        lastItem = lastItem.slice(0, lastItem.length - 5);
+        return lastItem.replace(/-/g, ' ');
+    }
+
     // function to pull the data from the DB
     const fetchJobs = async () => {
-        let { data: jobs, error } = await getAllJobsAndCompaniesInReverseDate();
+        let { data: jobs, error } = isATag() ?
+            await getJobAndCompanyFromTag(parseURLForTag()) :
+            await getAllJobsAndCompaniesInReverseDate();
         if (error) setError(error);
         else {
             setJobs(jobs)
@@ -33,7 +59,7 @@ const AllJobsPage = passedInJobs => {
                     </span>
                 </header>
 
-                <JobsList jobs={jobs} isLoading={isLoading} />
+                <JobsList jobs={jobs} isLoading={isLoading} tag={parseURLForTag()} />
 
                 {!!errorText && (
                     <div className={"border max-w-sm self-center px-4 py-2 mt-4 text-center text-sm bg-red-100 border-red-300 text-red-400"}>

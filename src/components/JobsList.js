@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { makeFriendlyUrl } from "@util/sanitize";
+import { capitalize, makeFriendlyUrl } from "@util/sanitize";
 import {
     COMPANY_NAME,
     JOBS_URL,
@@ -17,7 +17,7 @@ const generateLinkURL = job => {
     return `${JOBS_URL}/${makeFriendlyUrl(title)}-${makeFriendlyUrl(cName)}/${id}`
 }
 
-const JobsList = ({ jobs, isLoading }) => {
+const JobsList = ({ jobs, isLoading, tag }) => {
     return (
         <div
             className={"flex flex-col flex-grow p-4"}
@@ -38,7 +38,7 @@ const JobsList = ({ jobs, isLoading }) => {
                         ))
                     ) : (
                         <span className={"h-full flex justify-center items-center"}>
-                            {isLoading ? 'Loading...' : 'You do have any jobs yet!'}
+                            {isLoading ? 'Loading...' : `There are no ${capitalize(tag)} jobs yet!`}
                         </span>
                     )}
                 </div>
