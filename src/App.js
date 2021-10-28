@@ -9,7 +9,7 @@ function generateRoutes(){
             <Route
                 path={route.path}
                 component={route.component}
-                key={Date.now()}
+                key={route.path}
             />
         )
     })
@@ -17,7 +17,7 @@ function generateRoutes(){
 
 function App() {
     return (
-        <Router forceRefresh={true}>
+        <Router>
             <Header />
             <Switch>
                 {generateRoutes()}
