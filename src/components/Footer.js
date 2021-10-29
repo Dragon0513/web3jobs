@@ -191,7 +191,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="bg-gray-800" aria-labelledby="footer-heading">
+        <footer className="bg-gray-900" aria-labelledby="footer-heading">
             <h2 id="footer-heading" className="sr-only">
                 Footer
             </h2>
@@ -200,24 +200,24 @@ export default function Footer() {
                     <div className="grid grid-cols-2 gap-8 xl:col-span-4">
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <ul role="list" className="mt-4 space-y-4">
+                                <ul className="mt-4 space-y-4">
                                     {tags.length ? genTags(tags)[0] : 'Loading Tags'}
                                 </ul>
                             </div>
                             <div className="mt-12 md:mt-0">
-                                <ul role="list" className="mt-4 space-y-4">
+                                <ul className="mt-4 space-y-4">
                                     {tags.length ? genTags(tags)[1] : 'Loading Tags'}
                                 </ul>
                             </div>
                         </div>
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <ul role="list" className="mt-4 space-y-4">
+                                <ul className="mt-4 space-y-4">
                                     {tags.length ? genTags(tags)[2] : 'Loading Tags'}
                                 </ul>
                             </div>
                             <div className="mt-12 md:mt-0">
-                                <ul role="list" className="mt-4 space-y-4">
+                                <ul className="mt-4 space-y-4">
                                     {tags.length ? genTags(tags)[3] : 'Loading Tags'}
                                 </ul>
                             </div>

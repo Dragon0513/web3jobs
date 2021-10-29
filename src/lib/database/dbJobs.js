@@ -53,7 +53,6 @@ export const getJobAndCompanyFromId = jobId => {
  * @returns Array with a Job + Company object filtered by the tag
  */
  export const getJobAndCompanyFromTag = tag => {
-     console.log('tag: ', tag)
     return getAllJobsAndLinkedCompanies().cs( JOB_TAGS, [tag, tag] )
 }
 

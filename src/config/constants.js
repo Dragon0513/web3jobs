@@ -4,7 +4,7 @@ export const REACT_APP_SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY;
 // Database tables
 export const JOBS_TABLE = 'jobs';
 export const COMPANY_TABLE = 'companies';
-export const JOBS_POST_TABLE = 'postAJob';
+export const POST_JOB_TABLE = 'postAJob';
 export const PRICE_TABLE = 'pricing';
 
 // Database Jobs Table
@@ -28,6 +28,16 @@ export const TAGS_TABLE = 'tags';
 export const TAGS_ID = 'tagId';
 export const TAGS_NAME = 'tagName';
 
+// Database Post A Job Table
+export const POST_EMAIL = 'contactEmail';
+export const POST_COMPANY_NAME = 'companyName';
+export const POST_JOB_TITLE = 'jobTitle';
+export const POST_DESCRIPTION = 'jobDescription';
+export const POST_APP_URL = 'applicationUrl';
+export const POST_APP_EMAIL = 'applicationEmail';
+export const POST_PLAN_TIER = 'planTier';
+export const POST_PLAN_PRICE = 'planPrice';
+
 // URL PATHS
 export const COMPANIES_URL = '/web3-companies'
 export const COMPANY_PAGE_URL = `${COMPANIES_URL}/:cname`
@@ -48,3 +58,8 @@ export const COMPANIES_PAGE_TITLE = 'Web 3.0 Companies'
 export const COMPANIES_PAGE_SUBTITLE = 'Subtitle text is cool shittttttttt'
 export const ALL_JOBS_PAGE_TITLE = 'Web 3.0 Jobs'
 export const ALL_JOBS_PAGE_SUBTITLE = 'Jobs Subtitle text is cool shittttttttt'
+
+// Price tier
+export const TIER_FREE = 'freeTier';
+export const TIER_POPULAR = 'popularTier';
+export const TIER_SPENCY = 'spencyTier';
