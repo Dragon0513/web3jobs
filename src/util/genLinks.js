@@ -13,8 +13,8 @@ import { Link } from 'react-router-dom'
 export const genLinks = (linkData, style) => {
     return linkData.map(data => {
         return (
-            <Link to={data.path} key={data.linkText}>
-                <p className={style}>{data.linkText}</p>
+            <Link to={data.path} key={data.linkText} className={style}>
+                {data.linkText}
             </Link>
         );
     });

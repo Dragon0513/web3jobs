@@ -1,4 +1,3 @@
-import { ChevronDownIcon } from '@heroicons/react/solid'
 import { useState, useEffect } from "react";
 import { getAllTags } from "@db/";
 import { JOBS_URL } from "@config/constants";
@@ -193,7 +192,7 @@ export default function Footer() {
     return (
         <footer className="bg-gray-dark" aria-labelledby="footer-heading">
             <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 text-white">
-                <div className="pb-8 xl:grid xl:grid-cols-5 xl:gap-8">
+                <div className="pb-8 xl:grid">
                     <div className="grid grid-cols-2 gap-8 xl:col-span-4">
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
