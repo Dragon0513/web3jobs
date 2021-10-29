@@ -91,7 +91,7 @@ const navigation = {
     ],
     company: [
         { name: 'About', href: '#' },
-        { name: 'Blog', href: '#' },
+        { name: 'Blog', href: 'https://blog.web3jobs.biz' },
     ],
     legal: [
         { name: 'Privacy', href: '#' },
