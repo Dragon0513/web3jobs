@@ -7,6 +7,7 @@ import { Transition } from '@headlessui/react'
 import { CheckCircleIcon } from '@heroicons/react/outline'
 import { XIcon } from '@heroicons/react/solid'
 
+import PageContainer from "../PageContainer";
 import { postAJob } from "@db/";
 import {
     TIER_FREE,
@@ -52,7 +53,7 @@ const paymentOptions = formik => {
         <div className="sm:col-span-6 lg:py-5">
             <div className="relative lg:grid lg:grid-cols-7">
                 <div className="mx-auto max-w-md lg:mx-0 lg:max-w-none lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3">
-                    <div className="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-l-lg">
+                    <div className="h-full flex flex-col rounded-lg shadow-2xl overflow-hidden lg:rounded-none lg:rounded-l-lg">
                         <div className="flex-1 flex flex-col">
                             <div className="bg-white px-6 py-10">
                                 <div>
@@ -63,14 +64,14 @@ const paymentOptions = formik => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex-1 flex flex-col justify-between border-t-2 border-gray-100 p-6 bg-gray-50 sm:p-10 lg:p-6 xl:p-10">
+                            <div className="flex-1 flex flex-col justify-between border-t-2 border-gray-light p-6 bg-gray-lightest sm:p-10 lg:p-6 xl:p-10">
                                 <ul className="space-y-4">
                                     {freeFeatures.map((feature) => (
                                         <li key={feature} className="flex items-start">
                                             <div className="flex-shrink-0">
                                                 <CheckIcon className="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" />
                                             </div>
-                                            <p className="ml-3 text-base font-medium text-gray-500">{feature}</p>
+                                            <p className="ml-3 text-base font-medium text-white">{feature}</p>
                                         </li>
                                     ))}
                                 </ul>
@@ -138,7 +139,7 @@ const paymentOptions = formik => {
                     </div>
                 </div>
                 <div className="mt-10 mx-auto max-w-md lg:m-0 lg:max-w-none lg:col-start-6 lg:col-end-8 lg:row-start-2 lg:row-end-3">
-                    <div className="h-full flex flex-col rounded-lg shadow-lg overflow-hidden lg:rounded-none lg:rounded-r-lg">
+                    <div className="h-full flex flex-col rounded-lg shadow-2xl overflow-hidden lg:rounded-none lg:rounded-r-lg">
                         <div className="flex-1 flex flex-col">
                             <div className="bg-white px-6 py-10">
                                 <div>
@@ -150,14 +151,14 @@ const paymentOptions = formik => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex-1 flex flex-col justify-between border-t-2 border-gray-100 p-6 bg-gray-50 sm:p-10 lg:p-6 xl:p-10">
+                            <div className="flex-1 flex flex-col justify-between border-t-2 border-gray-light p-6 bg-gray-lightest sm:p-10 lg:p-6 xl:p-10">
                                 <ul className="space-y-4">
                                     {spencyFeatures.map((feature) => (
                                         <li key={feature} className="flex items-start">
                                             <div className="flex-shrink-0">
                                                 <CheckIcon className="flex-shrink-0 h-6 w-6 text-green-500" aria-hidden="true" />
                                             </div>
-                                            <p className="ml-3 text-base font-medium text-gray-500">{feature}</p>
+                                            <p className="ml-3 text-base font-medium text-white">{feature}</p>
                                         </li>
                                     ))}
                                 </ul>
@@ -241,7 +242,175 @@ const PostAJobPage = () => {
 
     const putDataIntoDB = async jobData => {
         const { data: job, error } = await postAJob(jobData)
-        if(!error) setShow(true)
+        if (!error) setShow(true)
+    }
+
+    const getContent = formik => {
+        return (
+            <div>
+                <form onSubmit={formik.handleSubmit}>
+                    <div>
+                        <div className="pb-8">
+                            <h3 className="text-5xl lg:text-6xl leading-tight font-medium dark:text-white text-gray">The first step to your next hire 👇</h3>
+                            <p className="mt-6 text-2xl lg:text-3xl dark:text-white text-gray-500">
+                                It will only take 2 minutes ⏳
+                            </p>
+                        </div>
+
+                        <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div className="sm:col-span-6">
+                                <label htmlFor="contactEmail" className="pb-1 lg:pb-3 block text-lg lg:text-3xl md:text-2xl font-medium dark:text-white text-gray-700">
+                                    Company Email
+                                </label>
+                                <div className="mt-1 relative rounded-md shadow-sm">
+                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <MailIcon className="h-7 w-7 text-gray-400" aria-hidden="true" />
+                                    </div>
+                                    <input
+                                        id="contactEmail"
+                                        name="contactEmail"
+                                        type="email"
+                                        autoComplete="email"
+                                        className={`${formik.touched.contactEmail && formik.errors.contactEmail ? "border-4 border-red-500" : ""} lg:h-14 md:h-12 flex-1 pl-10 lg:pl-12 focus:ring-indigo-500 md:text-xl focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-md sm:text-sm`}
+                                        aria-invalid="true"
+                                        aria-describedby="email-error"
+                                        {...formik.getFieldProps('contactEmail')}
+                                    />
+                                    {formik.touched.contactEmail && formik.errors.contactEmail ? (
+                                        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                            <ExclamationCircleIcon className="h-5 w-5 lg:h-7 lg:w-7 text-red-500" aria-hidden="true" />
+                                        </div>
+                                    ) : null}
+                                </div>
+                                {formik.touched.contactEmail && formik.errors.contactEmail ? (
+                                    <p className="mt-2 text-lg text-white" id="email-error">
+                                        {formik.errors.contactEmail}
+                                    </p>
+                                ) : null}
+                            </div>
+                            <div className="sm:col-span-6">
+                                <label htmlFor="companyName" className="pb-1 lg:pb-3 block text-lg lg:text-3xl md:text-2xl font-medium dark:text-white text-gray-700">
+                                    Company Name
+                                </label>
+                                <div className="mt-1 relative rounded-md shadow-sm">
+                                    <input
+                                        id="companyName"
+                                        name="companyName"
+                                        type="text"
+                                        autoComplete="organization"
+                                        className={`${formik.touched.companyName && formik.errors.companyName ? "border-4 border-red-500" : ""} lg:h-14 md:h-12 flex-1 focus:ring-indigo-500 md:text-xl focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-md sm:text-sm`}
+                                        {...formik.getFieldProps('companyName')}
+                                    />
+                                    {formik.touched.companyName && formik.errors.companyName ? (
+                                        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                            <ExclamationCircleIcon className="h-5 w-5 lg:h-7 lg:w-7 text-red-500" aria-hidden="true" />
+                                        </div>
+                                    ) : null}
+                                </div>
+                                {formik.touched.companyName && formik.errors.companyName ? (
+                                    <p className="mt-2 text-lg text-white" id="email-error">
+                                        {formik.errors.companyName}
+                                    </p>
+                                ) : null}
+                            </div>
+                            <div className="sm:col-span-6">
+                                <label htmlFor="jobTitle" className="pb-1 lg:pb-3 block text-lg lg:text-3xl md:text-2xl font-medium dark:text-white text-gray-700">
+                                    Job Title
+                                </label>
+                                <div className="mt-1 relative rounded-md shadow-sm">
+                                    <input
+                                        id="jobTitle"
+                                        name="jobTitle"
+                                        type="text"
+                                        placeholder="i.e. Senior Solidity Engineer"
+                                        className={`${formik.touched.jobTitle && formik.errors.jobTitle ? "border-4 border-red-500" : ""} lg:h-14 md:h-12 flex-1 focus:ring-indigo-500 md:text-xl focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-md sm:text-sm border-gray-300`}
+                                        {...formik.getFieldProps('jobTitle')}
+                                    />
+                                    {formik.touched.jobTitle && formik.errors.jobTitle ? (
+                                        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                            <ExclamationCircleIcon className="h-5 w-5 lg:h-7 lg:w-7 text-red-500" aria-hidden="true" />
+                                        </div>
+                                    ) : null}
+                                </div>
+                                {formik.touched.jobTitle && formik.errors.jobTitle ? (
+                                    <p className="mt-2 text-lg text-white" id="email-error">
+                                        {formik.errors.jobTitle}
+                                    </p>
+                                ) : null}
+                            </div>
+
+                            {paymentOptions(formik)}
+
+                            <div className="sm:col-span-6">
+                                <label htmlFor="description" className="pb-1 lg:pb-3 block text-lg lg:text-3xl md:text-2xl font-medium dark:text-white text-gray-700">
+                                    Job Description
+                                </label>
+                                <div className="mt-1 relative rounded-md shadow-sm">
+                                    <textarea
+                                        id="description"
+                                        name="description"
+                                        rows={10}
+                                        placeholder="Describe the role - please use markdown formatting 🤙"
+                                        className={`${formik.touched.description && formik.errors.description ? "border-4 border-red-500" : ""} flex-1 focus:ring-indigo-500 focus:border-indigo-500 md:text-xl block w-full min-w-0 rounded-none rounded-md sm:text-sm border-gray-300`}
+                                        {...formik.getFieldProps('description')}
+                                    />
+                                    {formik.touched.description && formik.errors.description ? (
+                                        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                            <ExclamationCircleIcon className="h-5 w-5 lg:h-7 lg:w-7 text-red-500" aria-hidden="true" />
+                                        </div>
+                                    ) : null}
+                                </div>
+                                {formik.touched.description && formik.errors.description ? (
+                                    <p className="mt-2 text-lg text-white" id="email-error">
+                                        {formik.errors.description}
+                                    </p>
+                                ) : null}
+                            </div>
+                            <div className="sm:col-span-6">
+                                <label htmlFor="application url" className="pb-1 lg:pb-3 block text-lg lg:text-3xl md:text-2xl font-medium dark:text-white text-gray-700">
+                                    Apply URL
+                                </label>
+                                <div className="mt-1 flex rounded-md shadow-sm">
+                                    <span className="inline-flex items-center px-3 rounded-l-md md:text-xl border border-r-0 border-white bg-gray-lightest dark:text-white sm:text-sm">
+                                        https://
+                                    </span>
+                                    <input
+                                        id="applicationURL"
+                                        name="applicationURL"
+                                        type="text"
+                                        placeholder="i.e. company.com/careers/apply"
+                                        className={`${formik.touched.applicationURL && formik.errors.applicationURL ? "border-t-4 border-l-4 border-b-4 border-red-500" : ""} lg:h-14 md:h-12 flex-1 focus:ring-indigo-500 md:text-xl focus:border-indigo-500 block w-full min-w-0 rounded-none sm:text-sm`}
+                                        {...formik.getFieldProps('applicationURL')}
+                                    />
+                                    {formik.touched.applicationURL && formik.errors.applicationURL ? (
+                                        <span className="inline-flex items-center px-3 rounded-r-md md:text-xl border border-r-0 bg-white text-gray-500 sm:text-sm">
+                                            <ExclamationCircleIcon className="h-5 w-5 lg:h-7 lg:w-7 text-red-500" aria-hidden="true" />
+                                        </span>
+                                    ) : null}
+                                </div>
+                                {formik.touched.applicationURL && formik.errors.applicationURL ? (
+                                    <p className="mt-2 text-lg text-white" id="email-error">
+                                        {formik.errors.applicationURL}
+                                    </p>
+                                ) : null}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="block py-8">
+                            <button
+                                type="submit"
+                                className="block w-full lg:w-3/5 lg:h-20 lg:text-4xl lg:justify-center md:text-3xl justify-center py-2 px-4 border border-transparent shadow-sm text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                Post that Job 🚀!
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                {popOver(show, setShow)}
+            </div>
+        );
     }
 
     return (
@@ -261,184 +430,15 @@ const PostAJobPage = () => {
                 description: Yup.string().min(20, 'That\'s a pretty short description, dont you think 🤔?').required('👆 Description Required'),
                 applicationURL: Yup.string().required('👆 Application URL Required'),
             })}
-            onSubmit={async (values, {resetForm }) => {
+            onSubmit={async (values, { resetForm }) => {
                 putDataIntoDB(values)
                 resetForm()
             }}
-        >{formik =>
-        (
-            <div className="dark:bg-gray-800">
-                <div className="container mx-auto sm:px-6 lg:px-8 p-8 lg:py-20 lg:px-52">
-                    <form className="space-y-8" onSubmit={formik.handleSubmit}>
-                        <div className="space-y-8">
-                            <div>
-                                <div className="pb-8">
-                                    <h3 className="text-5xl lg:text-6xl leading-tight font-medium dark:text-white text-gray-900">The first step to your next hire 👇</h3>
-                                    <p className="mt-6 text-2xl lg:text-3xl dark:text-white text-gray-500">
-                                        It will only take 2 minutes ⏳
-                                    </p>
-                                </div>
-
-                                <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                                    <div className="sm:col-span-6">
-                                        <label htmlFor="contactEmail" className="pb-1 lg:pb-3 block text-lg lg:text-3xl md:text-2xl font-medium dark:text-white text-gray-700">
-                                            Company Email
-                                        </label>
-                                        <div className="mt-1 relative rounded-md shadow-sm">
-                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <MailIcon className="h-7 w-7 text-gray-400" aria-hidden="true" />
-                                            </div>
-                                            <input
-                                                id="contactEmail"
-                                                name="contactEmail"
-                                                type="email"
-                                                autoComplete="email"
-                                                className={`${formik.touched.contactEmail && formik.errors.contactEmail ? "border-4 border-red-500" : ""} lg:h-14 md:h-12 flex-1 pl-10 lg:pl-12 focus:ring-indigo-500 md:text-xl focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-md sm:text-sm border-gray-300`}
-                                                aria-invalid="true"
-                                                aria-describedby="email-error"
-                                                {...formik.getFieldProps('contactEmail')}
-                                            />
-                                            {formik.touched.contactEmail && formik.errors.contactEmail ? (
-                                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                                    <ExclamationCircleIcon className="h-5 w-5 lg:h-7 lg:w-7 text-red-500" aria-hidden="true" />
-                                                </div>
-                                            ) : null}
-                                        </div>
-                                        {formik.touched.contactEmail && formik.errors.contactEmail ? (
-                                            <p className="mt-2 text-lg text-white" id="email-error">
-                                                {formik.errors.contactEmail}
-                                            </p>
-                                        ) : null}
-                                    </div>
-                                    <div className="sm:col-span-6">
-                                        <label htmlFor="companyName" className="pb-1 lg:pb-3 block text-lg lg:text-3xl md:text-2xl font-medium dark:text-white text-gray-700">
-                                            Company Name
-                                        </label>
-                                        <div className="mt-1 relative rounded-md shadow-sm">
-                                            <input
-                                                id="companyName"
-                                                name="companyName"
-                                                type="text"
-                                                autoComplete="organization"
-                                                className={`${formik.touched.companyName && formik.errors.companyName ? "border-4 border-red-500" : ""}lg:h-14 md:h-12 flex-1 focus:ring-indigo-500 md:text-xl focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-md sm:text-sm border-gray-300`}
-                                                {...formik.getFieldProps('companyName')}
-                                            />
-                                            {formik.touched.companyName && formik.errors.companyName ? (
-                                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                                    <ExclamationCircleIcon className="h-5 w-5 lg:h-7 lg:w-7 text-red-500" aria-hidden="true" />
-                                                </div>
-                                            ) : null}
-                                        </div>
-                                        {formik.touched.companyName && formik.errors.companyName ? (
-                                            <p className="mt-2 text-lg text-white" id="email-error">
-                                                {formik.errors.companyName}
-                                            </p>
-                                        ) : null}
-                                    </div>
-                                    <div className="sm:col-span-6">
-                                        <label htmlFor="jobTitle" className="pb-1 lg:pb-3 block text-lg lg:text-3xl md:text-2xl font-medium dark:text-white text-gray-700">
-                                            Job Title
-                                        </label>
-                                        <div className="mt-1 relative rounded-md shadow-sm">
-                                            <input
-                                                id="jobTitle"
-                                                name="jobTitle"
-                                                type="text"
-                                                placeholder="i.e. Senior Solidity Engineer"
-                                                className={`${formik.touched.jobTitle && formik.errors.jobTitle ? "border-4 border-red-500" : ""}lg:h-14 md:h-12 flex-1 focus:ring-indigo-500 md:text-xl focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-md sm:text-sm border-gray-300`}
-                                                {...formik.getFieldProps('jobTitle')}
-                                            />
-                                            {formik.touched.jobTitle && formik.errors.jobTitle ? (
-                                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                                    <ExclamationCircleIcon className="h-5 w-5 lg:h-7 lg:w-7 text-red-500" aria-hidden="true" />
-                                                </div>
-                                            ) : null}
-                                        </div>
-                                        {formik.touched.jobTitle && formik.errors.jobTitle ? (
-                                            <p className="mt-2 text-lg text-white" id="email-error">
-                                                {formik.errors.jobTitle}
-                                            </p>
-                                        ) : null}
-                                    </div>
-
-                                    {paymentOptions(formik)}
-
-                                    <div className="sm:col-span-6">
-                                        <label htmlFor="description" className="pb-1 lg:pb-3 block text-lg lg:text-3xl md:text-2xl font-medium dark:text-white text-gray-700">
-                                            Job Description
-                                        </label>
-                                        <div className="mt-1 relative rounded-md shadow-sm">
-                                            <textarea
-                                                id="description"
-                                                name="description"
-                                                rows={15}
-                                                placeholder="Describe the role - please use markdown formatting 🤙"
-                                                className={`${formik.touched.description && formik.errors.description ? "border-4 border-red-500" : ""}flex-1 focus:ring-indigo-500 focus:border-indigo-500 md:text-xl block w-full min-w-0 rounded-none rounded-md sm:text-sm border-gray-300`}
-                                                {...formik.getFieldProps('description')}
-                                            />
-                                            {formik.touched.description && formik.errors.description ? (
-                                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                                    <ExclamationCircleIcon className="h-5 w-5 lg:h-7 lg:w-7 text-red-500" aria-hidden="true" />
-                                                </div>
-                                            ) : null}
-                                        </div>
-                                        {formik.touched.description && formik.errors.description ? (
-                                            <p className="mt-2 text-lg text-white" id="email-error">
-                                                {formik.errors.description}
-                                            </p>
-                                        ) : null}
-                                    </div>
-                                    <div className="sm:col-span-6">
-                                        <label htmlFor="application url" className="pb-1 lg:pb-3 block text-lg lg:text-3xl md:text-2xl font-medium dark:text-white text-gray-700">
-                                            Apply URL (or email)
-                                        </label>
-                                        <div className="mt-1 flex rounded-md shadow-sm">
-                                            <span className="inline-flex items-center px-3 rounded-l-md md:text-xl border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
-                                                https://
-                                            </span>
-                                            <input
-                                                id="applicationURL"
-                                                name="applicationURL"
-                                                type="text"
-                                                placeholder="i.e. company.com/careers/apply"
-                                                className={`${formik.touched.applicationURL && formik.errors.applicationURL ? "border-t-4 border-l-4 border-b-4 border-red-500" : ""}lg:h-14 md:h-12 flex-1 focus:ring-indigo-500 md:text-xl focus:border-indigo-500 block w-full min-w-0 rounded-none  sm:text-sm border-gray-300`}
-                                                {...formik.getFieldProps('applicationURL')}
-                                            />
-                                            {formik.touched.applicationURL && formik.errors.applicationURL ? (
-                                                <span className="inline-flex items-center px-3 rounded-r-md md:text-xl border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
-                                                    <ExclamationCircleIcon className="h-5 w-5 lg:h-7 lg:w-7 text-red-500" aria-hidden="true" />
-                                                </span>
-                                            ) : null}
-                                        </div>
-                                        {formik.touched.applicationURL && formik.errors.applicationURL ? (
-                                            <p className="mt-2 text-lg text-white" id="email-error">
-                                                {formik.errors.applicationURL}
-                                            </p>
-                                        ) : null}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className="block ">
-                                <button
-                                    type="submit"
-                                    className="block w-full lg:w-3/5 lg:h-20 lg:text-4xl lg:justify-center md:text-3xl justify-center py-2 px-4 border border-transparent shadow-sm text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                >
-                                    Post that Job 🚀!
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                {popOver(show, setShow)}
-            </div>
+        >{formik => (
+            PageContainer(getContent(formik))
         )}
 
         </Formik>
-
-
     )
 }
 
