@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import PageContainer from "../PageContainer";
 import { getLinkedJobs } from "@db/";
 import {
     COMPANIES_URL,
@@ -41,25 +42,20 @@ const CompanyPage = company => {
         };
     };
 
-    return (
-        <div>
-            <div className={"w-screen fixed flex flex-col min-h-screen bg-gray-50"}>
-                <header className={"flex justify-between items-center px-4 h-16 bg-gray-900"}>
-                    <span className={"text-2xl sm:text-4xl text-white border-b font-sans"}>
-                        Company Name: {`${cName}`}
-                    </span>
-                </header>
-
+    const getContent = () => {
+        return (
+            <div>
                 <p>Description: {`${cDesc}`}</p>
                 <p>Website: {`${cUrl}`}</p>
-
                 <Link to={COMPANIES_URL}>Back to All Companies</Link>
-
                 <h1>Current jobs 👇</h1>
-
-                <JobsList jobs={linkedJobs} isLoading/>
+                <JobsList jobs={linkedJobs} isLoading />
             </div>
-        </div>
+        )
+    }
+
+    return (
+        PageContainer(getContent(), cName, cDesc)
     );
 };
 

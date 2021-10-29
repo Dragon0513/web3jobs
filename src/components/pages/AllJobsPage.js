@@ -1,7 +1,15 @@
 import { useState, useEffect } from "react";
-import { getAllJobsAndCompaniesInReverseDate, getJobAndCompanyFromTag } from "@db/";
+import PageContainer from "../PageContainer";
+import {
+    getAllJobsAndCompaniesInReverseDate,
+    getJobAndCompanyFromTag
+} from "@db/";
 import JobsList from "../JobsList";
-import { JOBS_URL } from "@config/constants";
+import {
+    JOBS_URL,
+    ALL_JOBS_PAGE_TITLE,
+    ALL_JOBS_PAGE_SUBTITLE
+} from "@config/constants";
 
 
 const AllJobsPage = passedInTag => {
@@ -14,9 +22,7 @@ const AllJobsPage = passedInTag => {
     }, []);
 
     const isATag = () => {
-        const { location: {
-            pathname: pathname
-        } } = passedInTag
+        const { location: { pathname } } = passedInTag
         return pathname.length > JOBS_URL.length;
     }
 
@@ -50,24 +56,24 @@ const AllJobsPage = passedInTag => {
         };
     };
 
-    return (
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div>
-                <header className={"flex justify-between items-center px-4 h-16 bg-gray-900"} >
-                    <span className={"text-2xl sm:text-4xl text-white border-b font-sans"}>
-                        All Jobs Screen
-                    </span>
-                </header>
+    const getContent = () => {
+        return (
+            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div>
+                    <JobsList jobs={jobs} isLoading={isLoading} tag={parseURLForTag()} />
 
-                <JobsList jobs={jobs} isLoading={isLoading} tag={parseURLForTag()} />
-
-                {!!errorText && (
-                    <div className={"border max-w-sm self-center px-4 py-2 mt-4 text-center text-sm bg-red-100 border-red-300 text-red-400"}>
-                        {errorText}
-                    </div>
-                )}
+                    {!!errorText && (
+                        <div className={"border max-w-sm self-center px-4 py-2 mt-4 text-center text-sm bg-red-100 border-red-300 text-red-400"}>
+                            {errorText}
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        )
+    }
+
+    return (
+        PageContainer(getContent(), ALL_JOBS_PAGE_TITLE, ALL_JOBS_PAGE_SUBTITLE)
     );
 }
 
