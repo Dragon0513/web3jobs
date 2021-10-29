@@ -1,6 +1,6 @@
 {
   "name": "web3",
-  "version": "0.0.5-alpha.7",
+  "version": "0.0.5-alpha.8",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.3.0",
