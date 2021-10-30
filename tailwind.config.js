@@ -24,6 +24,9 @@ module.exports = {
         DEFAULT: '#232626',
         dark: '#18191A',
         darkest: '#282828'
+      },
+      featured:{
+        DEFAULT: '#8F32EE'
       }
     }
   },

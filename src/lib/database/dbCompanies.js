@@ -3,6 +3,7 @@ import {
     COMPANY_ID,
     COMPANY_NAME,
     COMPANY_TABLE,
+    COMPANY_FEATURED
 } from "@constants/";
 
 //*********COMPANIES SECTION
@@ -20,7 +21,15 @@ export const getAllCompanies = () => {
  * @returns Array full of all company objects
  */
 export const getAllCompaniesInAlphabetic = () => {
-    return getAllCompanies().order(COMPANY_NAME, { ascending: true });
+    return getAllCompanies().order(COMPANY_NAME, { ascending: true }).not(COMPANY_FEATURED, 'eq', true);
+}
+
+/**
+ * function to get the companies that are featured
+ * @returns Array full of all company objects
+ */
+ export const getFeaturedCompanies = () => {
+    return getAllCompanies().is(COMPANY_FEATURED, true)
 }
 
 /**
