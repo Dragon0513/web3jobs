@@ -1,4 +1,6 @@
-// craco.config.js
+const {CracoAliasPlugin, configPaths} = require('react-app-rewire-alias');
+const aliasMap = configPaths('./jsconfig.paths.json');
+
 module.exports = {
     style: {
       postcss: {
@@ -8,4 +10,13 @@ module.exports = {
         ],
       },
     },
+    esLint: {
+      enable: true
+    },
+    plugins: [
+      {
+        plugin: CracoAliasPlugin,
+        options: {alias: aliasMap}
+      }
+    ]
   }
