@@ -23,6 +23,7 @@ export const COMPANY_NAME = 'cName';
 export const COMPANY_URL = 'cUrl';
 export const COMPANY_APPLICATION_URL = 'cApplicationUrl';
 export const COMPANY_FEATURED = 'cFeatured';
+export const COMPANY_ICON_URL = 'cIconUrl';
 
 // Database Tags Table
 export const TAGS_TABLE = 'tags';
@@ -55,12 +56,22 @@ export const JOBS_LINK = 'Jobs'
 export const POST_JOB_LINK = 'Post A Job'
 
 // Page titles and subtitles
-export const COMPANIES_PAGE_TITLE = 'Web 3.0 Companies'
+export const COMPANIES_PAGE_TITLE = 'Web3 Companies'
 export const COMPANIES_PAGE_SUBTITLE = 'Subtitle text is cool shittttttttt'
-export const ALL_JOBS_PAGE_TITLE = 'Web 3.0 Jobs'
+export const ALL_JOBS_PAGE_TITLE = 'Web3 Jobs'
 export const ALL_JOBS_PAGE_SUBTITLE = 'Jobs Subtitle text is cool shittttttttt'
 
 // Price tier
 export const TIER_FREE = 'freeTier';
 export const TIER_POPULAR = 'popularTier';
 export const TIER_SPENCY = 'spencyTier';
+
+// Card styles
+const allStyles = "border-b-2 border-white transform transition duration-500 bg-opacity-95 block px-8 py-2";
+const h1featureStyle = 'font-medium text-3xl lg:text-2xl'
+export const FEATURED_STYLE = `bg-featured hover:scale-105 hover:bg-red-800 ${allStyles}`;
+export const FEATURED_TEXT_STYLE =` text-lightyellows  ${h1featureStyle}`
+export const REGULAR_TEXT_STYLE =` font-medium text-2xl lg:text-2xl text-indigo`
+
+export const REGULAR_STYLE = `text-indigo-600 text-white hover:bg-gray-lightest ${allStyles}`
+

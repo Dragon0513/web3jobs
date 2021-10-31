@@ -28,13 +28,8 @@ const JobItemPage = job => {
     const getContent = () => {
         return (
             <div>
-                <p>
-                    Description: {`${jDesc}`}
-                </p>
-                <p>
-                    Apply URL: {`${cAppUrl}`}
-                </p>
-
+                <p>Description: {`${jDesc}`}</p>
+                <p>Apply URL: {`${cAppUrl}`}</p>
                 <Link to={JOBS_URL}>Back to All Jobs</Link>
                 <p>
                     {/*UPDATE THIS URL PATH TO POINT TO COMPANY PAGE*/}

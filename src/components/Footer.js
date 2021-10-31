@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAllTags } from "@db/";
-import { JOBS_URL } from "@config/constants";
-import { genFooterLink } from "@util/";
-import { makeFriendlyUrl, capitalize } from '@util/sanitize';
+import { genFooterLink, genTagsUrl } from "@util/";
+import {capitalize } from '@util/sanitize';
 
 // This is what we will ultimately return
 // it contains the inner div's with all the fancy ass links
@@ -15,10 +14,6 @@ const genTags = allTags => {
 
     return returnMe;
 }
-
-// function thatcreate the Jobs Tag URL
-// It will look like - as an ex: /web3-jobs/solidity-jobs
-const tagURL = tag => `${JOBS_URL}/${makeFriendlyUrl(tag)}-jobs`;
 
 const genTagData = tagsFromDB => {
     const rows = Math.round(tagsFromDB.length / 4);
@@ -43,7 +38,7 @@ const genTagData = tagsFromDB => {
 const genColumnData = tags => {
     return tags.map(tag => {
         const genLinkText = tgTxt => `Web3 ${capitalize(tgTxt)} jobs`;
-        return { linkText: genLinkText(tag), path: tagURL(tag) }
+        return { linkText: genLinkText(tag), path: genTagsUrl(tag) }
     })
 }
 

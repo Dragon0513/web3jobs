@@ -10,6 +10,7 @@ import {
     ALL_JOBS_PAGE_TITLE,
     ALL_JOBS_PAGE_SUBTITLE
 } from "@config/constants";
+import { loading } from "@util/loading";
 
 
 const AllJobsPage = passedInTag => {
@@ -58,16 +59,17 @@ const AllJobsPage = passedInTag => {
 
     const getContent = () => {
         return (
-            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div>
-                    <JobsList jobs={jobs} isLoading={isLoading} tag={parseURLForTag()} />
+            <div className={`${isLoading ? "" : "shadow-2xl"} overflow-hidden rounded-md`} >
+                <span className={"h-full justify-center items-center"} >
+                    {isLoading ? loading() : ''}
+                </span>
+                <JobsList jobs={jobs} isLoading={isLoading} tag={parseURLForTag()} />
 
-                    {!!errorText && (
-                        <div className={"border max-w-sm self-center px-4 py-2 mt-4 text-center text-sm bg-red-100 border-red-300 text-red-400"}>
-                            {errorText}
-                        </div>
-                    )}
-                </div>
+                {!!errorText && (
+                    <div className={"border max-w-sm self-center px-4 py-2 mt-4 text-center text-sm bg-red-100 border-red-300 text-red-400"}>
+                        {errorText}
+                    </div>
+                )}
             </div>
         )
     }

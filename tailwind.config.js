@@ -6,10 +6,10 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'dark': {'raw': '(prefers-color-scheme: dark)'},
+        'dark': { 'raw': '(prefers-color-scheme: dark)' },
       }
     },
-    colors:{
+    colors: {
       transparent: 'transparent',
       current: 'currentColor',
       black: colors.black,
@@ -18,6 +18,10 @@ module.exports = {
       red: colors.rose,
       yellow: colors.amber,
       green: colors.green,
+      lightyellows: {
+        DEFAULT: '#FBFF1F',
+        lemon: '#FBFF1F'
+      },
       gray: {
         lightest: '#282828',
         light: '#373737',
@@ -25,7 +29,7 @@ module.exports = {
         dark: '#18191A',
         darkest: '#282828'
       },
-      featured:{
+      featured: {
         DEFAULT: '#8F32EE'
       }
     }

@@ -1,8 +1,12 @@
 export const loading = () => {
     return (
-        <span>
-            <svg class="animate-spin h-10 w-10 mr-3 ..." viewBox="0 0 24 24"></svg>
-            Loading ...
-        </span>
+        <div class="flex justify-center items-center bg-gray">
+            <div class="loader bg-white p-5 rounded-full flex space-x-3">
+                <div class="w-5 h-5 bg-gray-darkest rounded-full animate-bounce"></div>
+                <div class="w-5 h-5 bg-gray-darkest rounded-full animate-bounce"></div>
+                <div class="w-5 h-5 bg-gray-darkest rounded-full animate-bounce"></div>
+            </div>
+
+        </div>
     )
 }
