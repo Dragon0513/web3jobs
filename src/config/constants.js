@@ -1,5 +1,7 @@
 export const REACT_APP_SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL;
 export const REACT_APP_SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY;
+export const CONTACT = process.env.CONTACT;
+export const CONTACT_URL = process.env.CONTACT_URL;
 
 // Database tables
 export const JOBS_TABLE = 'jobs';
