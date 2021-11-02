@@ -37,7 +37,7 @@ export default function HomePage() {
                                         <span className="block text-indigo-400">help build the decentralized web</span>
                                     </h1>
                                     <p className="mt-3 text-base text-white sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                                        Be part of the future of the web with X,XXX other people 👇
+                                        Be part of the future of the web 👇
                                     </p>
                                     <div className="mt-10 sm:mt-12">
                                         <form onSubmit={formSubmission} className="sm:max-w-xl sm:mx-auto lg:mx-0">
