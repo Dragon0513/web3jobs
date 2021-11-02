@@ -36,9 +36,7 @@ const AllJobsPage = passedInTag => {
      * @returns string that is just a tag
      */
     const parseURLForTag = () => {
-        const { location: {
-            pathname: pathname
-        } } = passedInTag
+        const { location: {pathname} } = passedInTag
         const sectioned = pathname.split('/');
         let lastItem = sectioned[sectioned.length - 1];
         lastItem = lastItem.slice(0, lastItem.length - 5);
@@ -75,7 +73,7 @@ const AllJobsPage = passedInTag => {
     }
 
     return (
-        PageContainer(getContent(), ALL_JOBS_PAGE_TITLE, ALL_JOBS_PAGE_SUBTITLE)
+        PageContainer(getContent(), {title: ALL_JOBS_PAGE_TITLE, isShown: true})
     );
 }
 
