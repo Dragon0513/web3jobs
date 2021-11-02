@@ -1,4 +1,5 @@
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Markdown from 'markdown-to-jsx';
 import PageContainer from "../PageContainer";
 import {
     COMPANY_APPLICATION_URL,
@@ -38,15 +39,10 @@ const JobItemPage = job => {
                             {jTitle}
                         </p>
                     </div>
-                    {/* <div className="relative z-10 text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72 text-white">
-                        <p className="text-lg text-gray-500">
-                            ??
-                        </p>
-                    </div> */}
                     <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start ">
                         <div className="relative z-10">
                             <div className="prose prose-indigo text-gray-500 mx-auto lg:max-w-none text-white">
-                                <p>{jDesc}</p>
+                                <Markdown>{jDesc}</Markdown>
                             </div>
                             <div className="mt-10 flex text-base max-w-prose mx-auto lg:max-w-none">
                                 <div className="rounded-md shadow">
