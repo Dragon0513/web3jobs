@@ -2,7 +2,7 @@ export const genListIcon = (src, alt, isFeatured) => {
     return (
         <span className="inline-block relative">
             <img
-                className="inline-block h-16 w-16 rounded-md hidden lg:block"
+                className="inline-block h-16 w-16 rounded-md hidden md:block lg:block"
                 src={src}
                 alt={alt}
             />

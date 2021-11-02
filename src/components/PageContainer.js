@@ -12,7 +12,7 @@ export default function PageContainer(content, info) {
     return (
         <div className="dark:bg-gray bg-gray">
             {info.isShown ? headers() : ""}
-            <div className="container mx-auto px-4 lg:px-8 p-8 lg:py-20 lg:px-52">
+            <div className="container mx-auto px-4 lg:px-8 p-8 lg:py-20">
                 {content}
             </div>
         </div>
