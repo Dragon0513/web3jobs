@@ -18,8 +18,6 @@ const CompanyPage = company => {
     const [isLoading, setIsLoading] = useState(true);
     const [email, setEmail] = useState("");
 
-    console.log('COMPANYYYYYY', company)
-
     const {
         location: {
             state: {
@@ -189,7 +187,7 @@ const CompanyPage = company => {
                             {cDesc}
                         </p>
                         <p className="mt-8 text-2xl text-gray-500 leading-8">
-                            <p>🔗: <a href={`https://www.${cUrl}`}>{cUrl}</a></p>
+                            <p>🔗: <a href={`${cUrl}`}>{cUrl}</a></p>
                         </p>
                         {cards()}
                     </div>
