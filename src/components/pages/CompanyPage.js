@@ -8,6 +8,7 @@ import {
     COMPANY_NAME,
     COMPANY_URL,
     COMPANY_ICON_URL,
+    REFER_URL
 } from "@constants/";
 import JobsList from "../JobsList";
 
@@ -164,6 +165,10 @@ const CompanyPage = company => {
         )
     }
 
+    const genUrlWithRefer = () => {
+        return `${cUrl}${REFER_URL}`;
+    }
+
     const getContent = () => {
         return (
             <div className="relative text-white overflow-hidden">
@@ -183,8 +188,7 @@ const CompanyPage = company => {
                             {cDesc}
                         </p>
                         <p className="mt-8 text-2xl text-gray-500 leading-8">
-                            <p>🔗: <a href={`${cUrl}`}>{cUrl}</a></p>
-                            {}
+                            <p>🔗: <a href={`${genUrlWithRefer()}`}>{cUrl}</a></p>
                         </p>
                         {cards()}
                     </div>
