@@ -55,7 +55,6 @@ const CompanyPage = company => {
     const cards = () => {
         return (
             <div>
-                <h3 className="text-lg leading-6 font-medium text-gray-900">Last 30 days</h3>
                 <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
                     {stats.map((item) => (
                         <div key={item.name} className="px-4 py-5 shadow-2xl bg-gray-light rounded-lg overflow-hidden sm:p-6">
@@ -188,7 +187,7 @@ const CompanyPage = company => {
                             {cDesc}
                         </p>
                         <p className="mt-8 text-2xl text-gray-500 leading-8">
-                            <p>Website: {`${cUrl}`}</p>
+                            <p>🔗: <a href={`https://www.${cUrl}`}>{cUrl}</a></p>
                         </p>
                         {cards()}
                     </div>
