@@ -18,6 +18,8 @@ const CompanyPage = company => {
     const [isLoading, setIsLoading] = useState(true);
     const [email, setEmail] = useState("");
 
+    console.log('COMPANYYYYYY', company)
+
     const {
         location: {
             state: {

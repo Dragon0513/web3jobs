@@ -8,8 +8,10 @@ import {
     JOBS_URL,
     JOB_DESCRIPTION,
     JOB_TITLE,
-    COMPANY_ICON_URL
+    COMPANY_ICON_URL,
+    COMPANIES_URL
 } from "@constants/";
+import { makeFriendlyUrl } from "@util/sanitize";
 
 const JobItemPage = job => {
     const {
@@ -28,6 +30,15 @@ const JobItemPage = job => {
             }
         }
     } = job;
+
+    const {location:{state:{job:{companies}}}} = job;
+
+    console.log('JOBBBBBBBBB', companies)
+
+    // function that will destructure the company object
+    const generateLinkURL = () => {
+        return `${COMPANIES_URL}/${makeFriendlyUrl(cName)}`
+    }
 
     const getContent = () => {
         return (
@@ -90,7 +101,7 @@ const JobItemPage = job => {
                                         </Link>
                                     </div>
                                     <div className="pt-5">
-                                        <Link to={COMPANY_URL}>
+                                        <Link to={{ pathname: generateLinkURL(companies), state: {company: companies} }} >
                                             <button className="hidden w-full lg:block items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-light hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                 All {cName} Jobs
                                             </button>
