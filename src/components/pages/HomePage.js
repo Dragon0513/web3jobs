@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { CheckCircleIcon, XIcon } from '@heroicons/react/solid'
 
 export default function HomePage() {
     const [email, setEmail] = useState("");
+    const [thankYouVisible, setThankYouVisible] = useState(false);
+
 
     const formSubmission = event => {
         event.preventDefault();
@@ -17,11 +20,67 @@ export default function HomePage() {
             },
             body: JSON.stringify(data)
         }).then(result => {
-            console.log(result)
+            setThankYouVisible(true);
             return true;
         }).catch(err => {
             return false;
         })
+    }
+
+    const thankYou = () => {
+        return (
+            <div className="rounded-md bg-green-50 p-4">
+                <div className="flex">
+                    <div className="flex-shrink-0">
+                        <CheckCircleIcon className="lg:h-10 h-8 lg:w-10 w-8 text-green-400" aria-hidden="true" />
+                    </div>
+                    <div className="ml-3">
+                        <p className="lg:text-3xl text-2xl font-medium text-green-800">Thank you!</p>
+                    </div>
+                    <div className="ml-auto pl-3">
+                        <div className="-mx-1.5 -my-1.5">
+                            <button
+                                type="button"
+                                className="inline-flex bg-green-50 rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
+                                onClick={() => setThankYouVisible(false)}
+                            >
+                                <span className="sr-only">Dismiss</span>
+                                <XIcon className="h-5 w-5" aria-hidden="true" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    const getEmailSection = () => {
+        return (
+            <form onSubmit={formSubmission} className="sm:max-w-xl sm:mx-auto lg:mx-0">
+                <div className="sm:flex">
+                    <div className="min-w-0 flex-1">
+                        <label htmlFor="email" className="sr-only">
+                            Email address
+                        </label>
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="Enter your email"
+                            className="block w-full px-4 py-3 rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="mt-3 sm:mt-0 sm:ml-3">
+                        <button
+                            type="submit"
+                            className="block w-full py-3 px-4 rounded-md shadow bg-indigo-500 text-white font-medium hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
+                        >
+                            Sign up for free
+                        </button>
+                    </div>
+                </div>
+            </form>
+        )
     }
 
     return (
@@ -40,30 +99,7 @@ export default function HomePage() {
                                         Be part of the future of the web 👇
                                     </p>
                                     <div className="mt-10 sm:mt-12">
-                                        <form onSubmit={formSubmission} className="sm:max-w-xl sm:mx-auto lg:mx-0">
-                                            <div className="sm:flex">
-                                                <div className="min-w-0 flex-1">
-                                                    <label htmlFor="email" className="sr-only">
-                                                        Email address
-                                                    </label>
-                                                    <input
-                                                        id="email"
-                                                        type="email"
-                                                        placeholder="Enter your email"
-                                                        className="block w-full px-4 py-3 rounded-md border-0 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
-                                                        onChange={(e) => setEmail(e.target.value)}
-                                                    />
-                                                </div>
-                                                <div className="mt-3 sm:mt-0 sm:ml-3">
-                                                    <button
-                                                        type="submit"
-                                                        className="block w-full py-3 px-4 rounded-md shadow bg-indigo-500 text-white font-medium hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 focus:ring-offset-gray-900"
-                                                    >
-                                                        Sign up for free
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        {thankYouVisible ? thankYou() : getEmailSection()}
                                     </div>
                                 </div>
                             </div>

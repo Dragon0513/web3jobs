@@ -1,5 +1,5 @@
 import { useState, useEffect} from "react";
-import { CheckCircleIcon, XIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon, XIcon } from '@heroicons/react/solid';
 import PageContainer from "../PageContainer";
 import { getLinkedJobs } from "@db/";
 import {
