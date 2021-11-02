@@ -1,4 +1,5 @@
 import { useState, useEffect} from "react";
+import { CheckCircleIcon, XIcon } from '@heroicons/react/solid'
 import PageContainer from "../PageContainer";
 import { getLinkedJobs } from "@db/";
 import {
@@ -12,6 +13,7 @@ import { COMPANY_APPLICATION_URL, COMPANY_ICON_URL } from "@config/constants";
 
 const CompanyPage = company => {
     const [linkedJobs, setJobs] = useState([]);
+    const [thankYouVisible, setThankYouVisible] = useState(false);
     const [errorText, setError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [email, setEmail] = useState("");
@@ -83,11 +85,39 @@ const CompanyPage = company => {
             },
             body: JSON.stringify(data)
         }).then(result => {
-            setEmail('')
+            setEmail('');
+            setThankYouVisible(true);
             return true;
         }).catch(err => {
             return false;
         })
+    }
+
+    const thankYou = () => {
+        return (
+            <div className="rounded-md bg-green-50 mx-8 p-4 mt-5">
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <CheckCircleIcon className="lg:h-10 h-8 lg:w-10 w-8 text-green-400" aria-hidden="true" />
+                </div>
+                <div className="ml-3">
+                  <p className="lg:text-3xl text-2xl font-medium text-green-800">Thank you!</p>
+                </div>
+                <div className="ml-auto pl-3">
+                  <div className="-mx-1.5 -my-1.5">
+                    <button
+                      type="button"
+                      className="inline-flex bg-green-50 rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
+                      onClick={() => setThankYouVisible(false)}
+                    >
+                      <span className="sr-only">Dismiss</span>
+                      <XIcon className="h-5 w-5" aria-hidden="true" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
     }
 
     const getEmailSection = () => {
@@ -167,7 +197,7 @@ const CompanyPage = company => {
                         <JobsList jobs={linkedJobs} isLoading />
                     </div>
                 </div>
-                {getEmailSection()}
+                {thankYouVisible ? thankYou() : getEmailSection()}
             </div>
         )
     }
