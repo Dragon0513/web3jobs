@@ -55,7 +55,7 @@ const CompanyPage = company => {
     }
 
     return (
-        PageContainer(getContent(), cName, cDesc)
+        PageContainer(getContent(), { isShown: false })
     );
 };
 

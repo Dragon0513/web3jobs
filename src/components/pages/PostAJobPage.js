@@ -435,7 +435,7 @@ const PostAJobPage = () => {
                 resetForm()
             }}
         >{formik => (
-            PageContainer(getContent(formik))
+            PageContainer(getContent(formik), {isShown: false})
         )}
 
         </Formik>

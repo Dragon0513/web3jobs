@@ -69,7 +69,7 @@ export const TIER_POPULAR = 'popularTier';
 export const TIER_SPENCY = 'spencyTier';
 
 // Card styles
-const allStyles = "border-b-2 border-white transform transition duration-500 bg-opacity-95 block px-8 py-2";
+const allStyles = "border-b-2 border-white transform transition duration-500 bg-opacity-95 block px-8 py-2 ";
 const h1featureStyle = 'font-medium text-3xl lg:text-2xl'
 export const FEATURED_STYLE = `bg-featured hover:scale-105 hover:bg-red-800 ${allStyles}`;
 export const FEATURED_TEXT_STYLE =` text-lightyellows  ${h1featureStyle}`
