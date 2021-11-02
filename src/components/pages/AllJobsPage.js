@@ -73,7 +73,7 @@ const AllJobsPage = passedInTag => {
     }
 
     return (
-        PageContainer(getContent(), {title: ALL_JOBS_PAGE_TITLE, subtitle: ALL_JOBS_PAGE_SUBTITLE, isShown: true})
+        PageContainer(getContent(), {title: ALL_JOBS_PAGE_TITLE, isShown: true})
     );
 }
 

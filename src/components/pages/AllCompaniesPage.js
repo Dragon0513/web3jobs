@@ -86,7 +86,7 @@ const AllCompaniesPage = () => {
     }
 
     return (
-        PageContainer(getContent(), {title: COMPANIES_PAGE_TITLE, subtitle: COMPANIES_PAGE_SUBTITLE, isShown: true})
+        PageContainer(getContent(), {title: COMPANIES_PAGE_TITLE, isShown: true})
     );
 }
 
