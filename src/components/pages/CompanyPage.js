@@ -83,7 +83,6 @@ const CompanyPage = company => {
             },
             body: JSON.stringify(data)
         }).then(result => {
-            console.log(result)
             setEmail('')
             return true;
         }).catch(err => {
