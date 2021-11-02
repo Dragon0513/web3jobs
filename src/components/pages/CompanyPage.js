@@ -18,8 +18,6 @@ const CompanyPage = company => {
     const [isLoading, setIsLoading] = useState(true);
     const [email, setEmail] = useState("");
 
-    console.log('COMPANYYYYYY', company)
-
     const {
         location: {
             state: {
@@ -179,7 +177,7 @@ const CompanyPage = company => {
                             <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                                 <div><img
                                     className="inline-block h-24 w-24 rounded-full"
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    src={cIconUrl}
                                     alt=""
                                 /></div>
                                 {cName}
@@ -189,7 +187,7 @@ const CompanyPage = company => {
                             {cDesc}
                         </p>
                         <p className="mt-8 text-2xl text-gray-500 leading-8">
-                            <p>🔗: <a href={`https://www.${cUrl}`}>{cUrl}</a></p>
+                            <p>🔗: <a href={`${cUrl}`}>{cUrl}</a></p>
                         </p>
                         {cards()}
                     </div>

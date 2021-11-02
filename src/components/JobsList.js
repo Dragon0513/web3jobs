@@ -14,7 +14,8 @@ import {
     FEATURED_STYLE,
     REGULAR_STYLE,
     FEATURED_TEXT_STYLE,
-    REGULAR_TEXT_STYLE
+    REGULAR_TEXT_STYLE,
+    REFER_URL
 } from "@constants/";
 import { genListIcon, genFooterLink, genTagsUrl } from "@util/";
 
@@ -39,6 +40,11 @@ const getCompany = job => {
     return companies;
 }
 
+const genUrlWithRefer = job => {
+    return `${job.jApplicationUrl}${REFER_URL}`;
+}
+
+
 const JobsList = ({ jobs }) => {
     return (
         jobs.map(job => {
@@ -57,14 +63,16 @@ const JobsList = ({ jobs }) => {
                             <div className="inline-flex space-x-2 hidden lg:block">
                                 {sepratetags(job[JOB_TAGS], company[COMPANY_FEATURED])}
                             </div>
-                            <button
-                                className={`${!company[COMPANY_FEATURED] ? "bg-gray-light hover:bg-white hover:text-black" : "hover:bg-indigo-100 hover:text-black border"} items-center px-6 py-3 font-medium rounded-md shadow-2xl text-white bg-indigo-600 hidden lg:block`}
-                            >
-                                Apply
-                            </button>
+                            <a href={genUrlWithRefer(job)}>
+                                <button
+                                    className={`${!company[COMPANY_FEATURED] ? "bg-gray-light hover:bg-white hover:text-black" : "hover:bg-indigo-100 hover:text-black border"} items-center px-6 py-3 font-medium rounded-md shadow-2xl text-white bg-indigo-600 hidden lg:block`}
+                                >
+                                    Apply
+                                </button>
+                            </a>
                         </div>
-                    </div>
-                </Link>
+                    </div >
+                </Link >
             )
         }
         )

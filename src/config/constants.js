@@ -1,5 +1,8 @@
-export const REACT_APP_SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL;
-export const REACT_APP_SUPABASE_KEY = process.env.REACT_APP_SUPABASE_KEY;
+import { isLocal } from "@util/local";
+
+export const REACT_APP_SUPABASE_URL = isLocal ? process.env.REACT_APP_SUPABASE_URL : process.env.REACT_APP_SUPABASE_URL_PROD;
+export const REACT_APP_SUPABASE_KEY = isLocal ? process.env.REACT_APP_SUPABASE_KEY : process.env.REACT_APP_SUPABASE_KEY_PROD;
+
 export const CONTACT = process.env.CONTACT;
 export const CONTACT_URL = process.env.CONTACT_URL;
 
@@ -16,6 +19,7 @@ export const JOB_TITLE = 'jobTitle';
 export const JOB_LOCATION = 'location';
 export const JOB_DESCRIPTION = 'jobDescription';
 export const JOB_TAGS = 'jobTags';
+export const JOB_APPLICATION_URL = 'jApplicationUrl';
 
 // Database Companies Table
 export const COMPANY_ID = 'cId';
@@ -74,6 +78,9 @@ const h1featureStyle = 'font-medium text-3xl lg:text-2xl'
 export const FEATURED_STYLE = `bg-featured hover:scale-105 hover:bg-red-800 ${allStyles}`;
 export const FEATURED_TEXT_STYLE =` text-lightyellows  ${h1featureStyle}`
 export const REGULAR_TEXT_STYLE =` font-medium text-2xl lg:text-2xl text-indigo`
-
 export const REGULAR_STYLE = `text-indigo-600 text-white hover:bg-gray-lightest ${allStyles}`
+
+// Referrer URL
+const domain = 'web3jobs.biz'
+export const REFER_URL = `?utm_source=${domain}&utm_medium=${domain}&utm_campaign=${domain}&ref=${domain}`
 

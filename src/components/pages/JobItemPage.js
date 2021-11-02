@@ -9,7 +9,9 @@ import {
     JOB_DESCRIPTION,
     JOB_TITLE,
     COMPANY_ICON_URL,
-    COMPANIES_URL
+    COMPANIES_URL,
+    JOB_APPLICATION_URL,
+    REFER_URL
 } from "@constants/";
 import { makeFriendlyUrl } from "@util/sanitize";
 
@@ -20,6 +22,7 @@ const JobItemPage = job => {
                 job: {
                     [JOB_TITLE]: jTitle,
                     [JOB_DESCRIPTION]: jDesc,
+                    [JOB_APPLICATION_URL]: jAppUrl,
                     companies: {
                         [COMPANY_APPLICATION_URL]: cAppUrl,
                         [COMPANY_NAME]: cName,
@@ -31,13 +34,17 @@ const JobItemPage = job => {
         }
     } = job;
 
-    const {location:{state:{job:{companies}}}} = job;
+    console.log('JOBABB', job)
 
-    console.log('JOBBBBBBBBB', companies)
+    const {location:{state:{job:{companies}}}} = job;
 
     // function that will destructure the company object
     const generateLinkURL = () => {
         return `${COMPANIES_URL}/${makeFriendlyUrl(cName)}`
+    }
+
+    const genUrlWithRefer = () => {
+        return `${jAppUrl}${REFER_URL}`;
     }
 
     const getContent = () => {
@@ -93,12 +100,11 @@ const JobItemPage = job => {
                                         </p>
                                     </div>
                                     <div className="pt-5">
-                                        {/* TODO: UPDATE THIS URL GET FROM THE DB */}
-                                        <Link to={cAppUrl}>
+                                        <a href={genUrlWithRefer()}>
                                             <button className="hidden w-full lg:block items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                 Apply
                                             </button>
-                                        </Link>
+                                        </a>
                                     </div>
                                     <div className="pt-5">
                                         <Link to={{ pathname: generateLinkURL(companies), state: {company: companies} }} >
