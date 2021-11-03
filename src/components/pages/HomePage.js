@@ -107,7 +107,7 @@ export default function HomePage() {
                                 <div className="px-4 sm:max-w-2xl sm:px-6 ">
                                     {/* Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ */}
                                     <img
-                                        className="w-full lg:absolute lg:inset-y-0"
+                                        className="w-full md:w-auto lg:absolute lg:inset-y-0"
                                         src="https://yhsyqsnormpfxbbippdb.supabase.in/storage/v1/object/public/assets/heroimage.svg"
                                         alt=""
                                     />

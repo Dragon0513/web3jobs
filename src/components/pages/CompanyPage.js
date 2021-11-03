@@ -6,10 +6,11 @@ import {
     COMPANY_DESCRIPTION,
     COMPANY_ID,
     COMPANY_NAME,
-    COMPANY_URL
+    COMPANY_URL,
+    COMPANY_ICON_URL,
+    REFER_URL
 } from "@constants/";
 import JobsList from "../JobsList";
-import { COMPANY_APPLICATION_URL, COMPANY_ICON_URL } from "@config/constants";
 
 const CompanyPage = company => {
     const [linkedJobs, setJobs] = useState([]);
@@ -27,7 +28,6 @@ const CompanyPage = company => {
                     [COMPANY_URL]: cUrl,
                     [COMPANY_ID]: cId,
                     [COMPANY_ICON_URL]: cIconUrl,
-                    [COMPANY_APPLICATION_URL]: cAppUrl
                 }
             }
         }
@@ -165,15 +165,16 @@ const CompanyPage = company => {
         )
     }
 
+    const genUrlWithRefer = () => {
+        return `${cUrl}${REFER_URL}`;
+    }
+
     const getContent = () => {
         return (
             <div className="relative text-white overflow-hidden">
-                <div className="relative px-4 sm:px-6 lg:px-8">
+                <div className="relative px-4 sm:px-6">
                     <div className="text-lg max-w-prose mx-auto">
                         <h1>
-                            {/* <span className="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">
-                                Introducing
-                            </span> */}
                             <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                                 <div><img
                                     className="inline-block h-24 w-24 rounded-full"
@@ -187,12 +188,12 @@ const CompanyPage = company => {
                             {cDesc}
                         </p>
                         <p className="mt-8 text-2xl text-gray-500 leading-8">
-                            <p>🔗: <a href={`${cUrl}`}>{cUrl}</a></p>
+                            <p>🔗: <a href={`${genUrlWithRefer()}`}>{cUrl}</a></p>
                         </p>
                         {cards()}
                     </div>
                     <h1 className="mt-8 text-2xl leading-8 mb-5">Current jobs 👇</h1>
-                    <div className="overflow-hidden">
+                    <div className="">
                         <JobsList jobs={linkedJobs} isLoading />
                     </div>
                 </div>

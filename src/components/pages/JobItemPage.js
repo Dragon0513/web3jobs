@@ -36,7 +36,7 @@ const JobItemPage = job => {
 
     console.log('JOBABB', job)
 
-    const {location:{state:{job:{companies}}}} = job;
+    const { location: { state: { job: { companies } } } } = job;
 
     // function that will destructure the company object
     const generateLinkURL = () => {
@@ -64,13 +64,13 @@ const JobItemPage = job => {
                             </div>
                             <div className="mt-10 flex text-base max-w-prose mx-auto lg:max-w-none">
                                 <div className="rounded-md shadow">
-                                    <Link to={COMPANY_URL}>
+                                    <a href={genUrlWithRefer()}>
                                         <button
                                             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         >
                                             Apply
                                         </button>
-                                    </Link>
+                                    </a>
                                 </div>
                                 <div className="rounded-md shadow ml-4">
                                     <Link to={JOBS_URL}>
@@ -107,7 +107,7 @@ const JobItemPage = job => {
                                         </a>
                                     </div>
                                     <div className="pt-5">
-                                        <Link to={{ pathname: generateLinkURL(companies), state: {company: companies} }} >
+                                        <Link to={{ pathname: generateLinkURL(companies), state: { company: companies } }} >
                                             <button className="hidden w-full lg:block items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-light hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                 All {cName} Jobs
                                             </button>

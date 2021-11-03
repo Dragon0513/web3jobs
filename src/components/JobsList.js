@@ -28,7 +28,8 @@ const generateLinkURL = job => {
 
 const sepratetags = (tags, isFeatured) => {
     const style = `${isFeatured ? "bg-gray-dark text-white hover:bg-white hover:text-black" : "bg-indigo-100 text-indigo-800 hover:bg-gray-lightest hover:text-white "} flex-1 items-center px-3 py-0.5 rounded-full text-sm font-medium `
-    return tags.map(tag => (
+    const onlyFourTags = tags.slice(0, 4);
+    return onlyFourTags.map(tag => (
         <span className={style}>
             {genFooterLink(tag, genTagsUrl(tag))}
         </span>
@@ -52,7 +53,7 @@ const JobsList = ({ jobs }) => {
 
             return (
                 <Link key={job[JOB_ID]} to={{ pathname: generateLinkURL(job), state: { job } }} className={`${company[COMPANY_FEATURED] ? FEATURED_STYLE : REGULAR_STYLE}`}>
-                    <div className="lg:px-4 py-4 flex items-center">
+                    <div className="py-4 flex items-center">
                         {genListIcon(company[COMPANY_ICON_URL], "", company[COMPANY_FEATURED])}
                         <div className="flex-1 pl-8 flex items-center justify-between">
                             <div>
@@ -65,7 +66,7 @@ const JobsList = ({ jobs }) => {
                             </div>
                             <a href={genUrlWithRefer(job)}>
                                 <button
-                                    className={`${!company[COMPANY_FEATURED] ? "bg-gray-light hover:bg-white hover:text-black" : "hover:bg-indigo-100 hover:text-black border"} items-center px-6 py-3 font-medium rounded-md shadow-2xl text-white bg-indigo-600 hidden lg:block`}
+                                    className={`${!company[COMPANY_FEATURED] ? "bg-gray-light hover:bg-white hover:text-black" : "hover:bg-indigo-100 hover:text-black border"} items-center px-6 py-3 font-medium rounded-md shadow-2xl text-white bg-indigo-600 hidden md:block lg:block`}
                                 >
                                     Apply
                                 </button>
