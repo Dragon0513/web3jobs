@@ -34,8 +34,6 @@ const JobItemPage = job => {
         }
     } = job;
 
-    console.log('JOBABB', job)
-
     const { location: { state: { job: { companies } } } } = job;
 
     // function that will destructure the company object
@@ -91,7 +89,6 @@ const JobItemPage = job => {
                                 <div className="rounded-t-lg px-6 py-8 sm:px-10 sm:pt-10 sm:pb-8">
                                     <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-indigo-600 sm:text-4xl"> {`${cName}`}</h3>
                                     <div className="relative text-lg text-gray-700 font-medium mt-8">
-                                        {console.log('URL: ', cUrl)}
                                         <p className="relative">
                                             🔗 <a href={`${cUrl}`}>{cUrl}</a>
                                         </p>

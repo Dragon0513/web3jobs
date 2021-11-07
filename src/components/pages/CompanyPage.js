@@ -8,7 +8,9 @@ import {
     COMPANY_NAME,
     COMPANY_URL,
     COMPANY_ICON_URL,
-    REFER_URL
+    REFER_URL,
+    HOME_PAGE_FETCH_URL,
+    HOME_PAGE_API_KEY
 } from "@constants/";
 import JobsList from "../JobsList";
 
@@ -76,11 +78,11 @@ const CompanyPage = company => {
             formName: 'formName', formEmail: email, formMessage: 'New Web3 Signup'
         }
 
-        fetch('https://behcfjv89k.execute-api.us-east-1.amazonaws.com/default/contact', {
+        fetch(HOME_PAGE_FETCH_URL, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'X-Api-Key': '0vSWfAWdLV38saVPNuShf9tMNzvHfEgs29PMxU9L'
+                'X-Api-Key': HOME_PAGE_API_KEY
             },
             body: JSON.stringify(data)
         }).then(result => {
