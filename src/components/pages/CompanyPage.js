@@ -2,13 +2,16 @@ import { useState, useEffect} from "react";
 import { CheckCircleIcon, XIcon } from '@heroicons/react/solid';
 import PageContainer from "../PageContainer";
 import { getLinkedJobs } from "@db/";
+import { getLinkCard } from "@util/genLinkCard";
 import {
     COMPANY_DESCRIPTION,
     COMPANY_ID,
     COMPANY_NAME,
     COMPANY_URL,
     COMPANY_ICON_URL,
-    REFER_URL
+    REFER_URL,
+    HOME_PAGE_FETCH_URL,
+    HOME_PAGE_API_KEY
 } from "@constants/";
 import JobsList from "../JobsList";
 
@@ -32,6 +35,12 @@ const CompanyPage = company => {
             }
         }
     } = company;
+
+    const headerInfo = {
+        title: `Web3 ${cName}`,
+        imageURL: cIconUrl,
+        description: `Web3 Company: ${cDesc}`
+    }
 
     useEffect(() => {
         getJobs().catch(console.error);
@@ -76,11 +85,11 @@ const CompanyPage = company => {
             formName: 'formName', formEmail: email, formMessage: 'New Web3 Signup'
         }
 
-        fetch('https://behcfjv89k.execute-api.us-east-1.amazonaws.com/default/contact', {
+        fetch(HOME_PAGE_FETCH_URL, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'X-Api-Key': '0vSWfAWdLV38saVPNuShf9tMNzvHfEgs29PMxU9L'
+                'X-Api-Key': HOME_PAGE_API_KEY
             },
             body: JSON.stringify(data)
         }).then(result => {
@@ -172,6 +181,7 @@ const CompanyPage = company => {
     const getContent = () => {
         return (
             <div className="relative text-white overflow-hidden">
+                {getLinkCard(headerInfo)}
                 <div className="relative px-4 sm:px-6">
                     <div className="text-lg max-w-prose mx-auto">
                         <h1>

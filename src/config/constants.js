@@ -3,6 +3,9 @@ import { isLocal } from "@util/local";
 export const REACT_APP_SUPABASE_URL = isLocal ? process.env.REACT_APP_SUPABASE_URL : process.env.REACT_APP_SUPABASE_URL_PROD;
 export const REACT_APP_SUPABASE_KEY = isLocal ? process.env.REACT_APP_SUPABASE_KEY : process.env.REACT_APP_SUPABASE_KEY_PROD;
 
+export const HOME_PAGE_FETCH_URL = process.env.REACT_APP_HOME_PAGE_FETCH_URL;
+export const HOME_PAGE_API_KEY = process.env.REACT_APP_HOME_PAGE_API_KEY;
+
 export const CONTACT = process.env.CONTACT;
 export const CONTACT_URL = process.env.CONTACT_URL;
 

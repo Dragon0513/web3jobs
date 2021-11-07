@@ -5,3 +5,4 @@ export * from './loading';
 export * from './genListIcon';
 export * from './daysElapsed';
 export * from './genTagsUrl';
+export * from './genLinkCard';

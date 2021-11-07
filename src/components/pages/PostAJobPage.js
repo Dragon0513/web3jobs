@@ -14,6 +14,7 @@ import {
     TIER_POPULAR,
     TIER_SPENCY
 } from "@constants/";
+import { getLinkCard } from "@util/genLinkCard";
 
 const freeFeatures = [
     'Job listed on the site',
@@ -194,7 +195,7 @@ const popOver = (show, setShow) => {
                 aria-live="assertive"
                 className="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start"
             >
-                <div className="w-full flex flex-col items-center space-y-4 sm:items-end">
+                <div className="w-full flex flex-col items-center space-y-4 lg:mt-20 sm:items-end">
                     {/* Notification panel, dynamically insert this into the live region when it needs to be displayed */}
                     <Transition
                         show={show}
@@ -237,6 +238,14 @@ const popOver = (show, setShow) => {
     )
 }
 
+const imageURL = "https://yhsyqsnormpfxbbippdb.supabase.in/storage/v1/object/public/assets/heroimage.svg";
+
+const headerInfo = {
+    title: "Web3J☁bs Post A Job",
+    imageURL,
+    description: "Looking to hire some of the best web3 engineers? Post a job on the #1 Web3J☁b Board!"
+}
+
 const PostAJobPage = () => {
     const [show, setShow] = useState(false)
 
@@ -248,6 +257,7 @@ const PostAJobPage = () => {
     const getContent = formik => {
         return (
             <div>
+                {getLinkCard(headerInfo)}
                 <form onSubmit={formik.handleSubmit}>
                     <div>
                         <div className="pb-8">
@@ -435,7 +445,7 @@ const PostAJobPage = () => {
                 resetForm()
             }}
         >{formik => (
-            PageContainer(getContent(formik), {isShown: false})
+            PageContainer(getContent(formik), { isShown: false })
         )}
 
         </Formik>

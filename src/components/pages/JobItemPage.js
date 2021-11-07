@@ -14,6 +14,7 @@ import {
     REFER_URL
 } from "@constants/";
 import { makeFriendlyUrl } from "@util/sanitize";
+import { getLinkCard } from "@util/genLinkCard";
 
 const JobItemPage = job => {
     const {
@@ -34,7 +35,11 @@ const JobItemPage = job => {
         }
     } = job;
 
-    console.log('JOBABB', job)
+    const headerInfo = {
+        title: `Web3 ${jTitle}`,
+        imageURL: cIconUrl,
+        description: `Web3 Job: ${jDesc}`
+    }
 
     const { location: { state: { job: { companies } } } } = job;
 
@@ -50,6 +55,7 @@ const JobItemPage = job => {
     const getContent = () => {
         return (
             <div className="bg-gray-50 overflow-hidden">
+                {getLinkCard(headerInfo)}
                 <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
                     <div className="text-base max-w-prose mx-auto lg:max-w-none text-white">
                         <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Work with us at {cName}</h2>
@@ -91,7 +97,6 @@ const JobItemPage = job => {
                                 <div className="rounded-t-lg px-6 py-8 sm:px-10 sm:pt-10 sm:pb-8">
                                     <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-indigo-600 sm:text-4xl"> {`${cName}`}</h3>
                                     <div className="relative text-lg text-gray-700 font-medium mt-8">
-                                        {console.log('URL: ', cUrl)}
                                         <p className="relative">
                                             🔗 <a href={`${cUrl}`}>{cUrl}</a>
                                         </p>
