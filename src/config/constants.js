@@ -81,5 +81,5 @@ export const REGULAR_TEXT_STYLE =` font-medium text-2xl lg:text-2xl text-indigo`
 export const REGULAR_STYLE = `text-indigo-600 text-white hover:bg-gray-lightest ${allStyles}`
 
 // Referrer URL
-const domain = 'web3jobs.biz'
+const domain = 'web3jobz.com'
 export const REFER_URL = `?utm_source=${domain}&utm_medium=${domain}&utm_campaign=${domain}&ref=${domain}`
