@@ -11,6 +11,7 @@ import {
     ALL_JOBS_PAGE_SUBTITLE
 } from "@config/constants";
 import { loading } from "@util/loading";
+import { getLinkCard } from "@util/genLinkCard";
 
 
 const AllJobsPage = passedInTag => {
@@ -55,9 +56,18 @@ const AllJobsPage = passedInTag => {
         };
     };
 
+    const imageURL = "https://yhsyqsnormpfxbbippdb.supabase.in/storage/v1/object/public/assets/heroimage.svg";
+
+    const headerInfo = {
+        title: "Web3J☁bs - All Available Jobs",
+        imageURL: imageURL,
+        description: "Web3J☁bs - All Available Jobs"
+    }
+
     const getContent = () => {
         return (
             <div className={`${isLoading ? "" : "shadow-2xl"} overflow-hidden rounded-md`} >
+                {getLinkCard(headerInfo)}
                 <span className={"h-full justify-center items-center"} >
                     {isLoading ? loading() : ''}
                 </span>

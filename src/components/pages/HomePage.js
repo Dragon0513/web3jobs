@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { CheckCircleIcon, XIcon } from '@heroicons/react/solid'
-import {HOME_PAGE_FETCH_URL, HOME_PAGE_API_KEY} from "@constants/"
+import { HOME_PAGE_FETCH_URL, HOME_PAGE_API_KEY } from "@constants/"
+import { getLinkCard } from "@util/genLinkCard";
 
 export default function HomePage() {
     const [email, setEmail] = useState("");
     const [thankYouVisible, setThankYouVisible] = useState(false);
-
 
     const formSubmission = event => {
         event.preventDefault();
@@ -13,23 +13,23 @@ export default function HomePage() {
             formName: 'formName', formEmail: email, formMessage: 'New Web3 Signup'
         }
         data.formEmail.length === 0 ? console.log('Fill in the field') :
-        fetch(HOME_PAGE_FETCH_URL, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-Api-Key': HOME_PAGE_API_KEY
-            },
-            body: JSON.stringify(data)
-        }).then(result => {
-            
-            setThankYouVisible(true);
-            setEmail("");
+            fetch(HOME_PAGE_FETCH_URL, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-Api-Key': HOME_PAGE_API_KEY
+                },
+                body: JSON.stringify(data)
+            }).then(result => {
 
-            return true;
-        }).catch(err => {
-            return false;
-        })
-        
+                setThankYouVisible(true);
+                setEmail("");
+
+                return true;
+            }).catch(err => {
+                return false;
+            })
+
     }
 
     const thankYou = () => {
@@ -88,8 +88,17 @@ export default function HomePage() {
         )
     }
 
+    const imageURL = "https://yhsyqsnormpfxbbippdb.supabase.in/storage/v1/object/public/assets/heroimage.svg";
+
+    const headerInfo = {
+        title: "Web3J☁bs Home",
+        imageURL,
+        description: "The #1 Web3J☁b Board"
+    }
+
     return (
         <div className="relative overflow-hidden">
+            {getLinkCard(headerInfo)}
             <main>
                 <div className="pt-10 bg-gray sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
                     <div className="mx-auto max-w-7xl lg:px-8">
@@ -113,7 +122,7 @@ export default function HomePage() {
                                     {/* Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ */}
                                     <img
                                         className="w-full md:w-auto lg:absolute lg:inset-y-0"
-                                        src="https://yhsyqsnormpfxbbippdb.supabase.in/storage/v1/object/public/assets/heroimage.svg"
+                                        src={imageURL}
                                         alt=""
                                     />
                                 </div>

@@ -14,6 +14,7 @@ import {
     REFER_URL
 } from "@constants/";
 import { makeFriendlyUrl } from "@util/sanitize";
+import { getLinkCard } from "@util/genLinkCard";
 
 const JobItemPage = job => {
     const {
@@ -34,6 +35,12 @@ const JobItemPage = job => {
         }
     } = job;
 
+    const headerInfo = {
+        title: `Web3 ${jTitle}`,
+        imageURL: cIconUrl,
+        description: `Web3 Job: ${jDesc}`
+    }
+
     const { location: { state: { job: { companies } } } } = job;
 
     // function that will destructure the company object
@@ -48,6 +55,7 @@ const JobItemPage = job => {
     const getContent = () => {
         return (
             <div className="bg-gray-50 overflow-hidden">
+                {getLinkCard(headerInfo)}
                 <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
                     <div className="text-base max-w-prose mx-auto lg:max-w-none text-white">
                         <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Work with us at {cName}</h2>

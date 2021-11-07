@@ -45,6 +45,13 @@ const genUrlWithRefer = job => {
     return `${job.jApplicationUrl}${REFER_URL}`;
 }
 
+const correctDaysString = data => {
+    const days = daysElapsed(data);
+    if( days <= 1 ) return 'Today!'
+
+    const plural = (days === 1) ? 'day' : 'days'
+    return `${days} ${plural} ago`
+}
 
 const JobsList = ({ jobs }) => {
     return (
@@ -59,7 +66,7 @@ const JobsList = ({ jobs }) => {
                             <div>
                                 <h1 className={`${company[COMPANY_FEATURED] ? FEATURED_TEXT_STYLE : REGULAR_TEXT_STYLE}`}>{job[JOB_TITLE]}</h1>
                                 <p className="mb-1 flex-shrink-0 font-normal text-white font-medium">{company[COMPANY_NAME]}</p>
-                                <p className="flex-shrink-0 font-normal text-white ">📅 Posted {daysElapsed(job[JOB_DATE_POSTED])} days ago</p>
+                                <p className="flex-shrink-0 font-normal text-white ">📅 Posted {correctDaysString(job[JOB_DATE_POSTED])}</p>
                             </div>
                             <div className="inline-flex space-x-2 hidden lg:block">
                                 {sepratetags(job[JOB_TAGS], company[COMPANY_FEATURED])}
