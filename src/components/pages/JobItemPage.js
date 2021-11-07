@@ -93,11 +93,11 @@ const JobItemPage = job => {
                                     <div className="relative text-lg text-gray-700 font-medium mt-8">
                                         {console.log('URL: ', cUrl)}
                                         <p className="relative">
-                                            🔗 <a href={`https://www.${cUrl}`}>{cUrl}</a>
+                                            🔗 <a href={`${cUrl}`}>{cUrl}</a>
                                         </p>
-                                        <p>
+                                        {/* <p>
                                             🐦 twitter@
-                                        </p>
+                                        </p> */}
                                     </div>
                                     <div className="pt-5">
                                         <a href={genUrlWithRefer()}>
