@@ -46,8 +46,8 @@ const AllCompaniesPage = () => {
 
     // function that will destructure the company object
     const generateLinkURL = company => {
-        const { [COMPANY_NAME]: cName } = company;
-        return `${COMPANIES_URL}/${makeFriendlyUrl(cName)}`
+        const { [COMPANY_NAME]: cName, [COMPANY_ID]: cId } = company;
+        return `${COMPANIES_URL}/${makeFriendlyUrl(cName)}/${cId}`
     }
 
     const genCompanies = companyData => {

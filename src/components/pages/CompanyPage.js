@@ -1,7 +1,7 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { CheckCircleIcon, XIcon } from '@heroicons/react/solid';
 import PageContainer from "../PageContainer";
-import { getLinkedJobs } from "@db/";
+import { getLinkedJobs, getSingleCompany } from "@db/";
 import { getLinkCard } from "@util/genLinkCard";
 import {
     COMPANY_DESCRIPTION,
@@ -18,42 +18,43 @@ import JobsList from "../JobsList";
 const CompanyPage = company => {
     const [linkedJobs, setJobs] = useState([]);
     const [thankYouVisible, setThankYouVisible] = useState(false);
+    const [currentCompany, setCompany] = useState(company);
     const [errorText, setError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [email, setEmail] = useState("");
 
-    const {
-        location: {
-            state: {
-                company: {
-                    [COMPANY_NAME]: cName,
-                    [COMPANY_DESCRIPTION]: cDesc,
-                    [COMPANY_URL]: cUrl,
-                    [COMPANY_ID]: cId,
-                    [COMPANY_ICON_URL]: cIconUrl,
-                }
-            }
-        }
-    } = company;
-
     const headerInfo = {
-        title: `Web3 ${cName}`,
-        imageURL: cIconUrl,
-        description: `Web3 Company: ${cDesc}`
+        title: `Web3 ${currentCompany[COMPANY_NAME]}`,
+        imageURL: currentCompany[COMPANY_ICON_URL],
+        description: `Web3 Company: ${currentCompany[COMPANY_DESCRIPTION]}`
     }
 
     useEffect(() => {
-        getJobs().catch(console.error);
+        populateData().catch(console.error)
     }, []);
 
-    const getJobs = async () => {
-        let { data: linkedJobs, error } = await getLinkedJobs(cId);
-        if (error) setError(error);
+    const populateData = async () => {
+        const getJobs = async id => {
+            let { data: linkedJobs, linkedError } = await getLinkedJobs(id);
+            if (linkedError) setError(linkedError);
+            else setJobs(linkedJobs);
+        }
+
+        if (company?.location?.state?.company) {
+            setCompany(company.location.state.company)
+            getJobs(company.location.state.company[COMPANY_ID])
+        }
         else {
-            setJobs(linkedJobs)
-            setIsLoading(false);
-        };
-    };
+            const id = company.match.params.cid;
+            let { data: currCompany, error } = await getSingleCompany(id);
+            if (error) setError(error);
+            else setCompany(currCompany[0]);
+
+            getJobs(id)
+        }
+
+        setIsLoading(false);
+    }
 
     const stats = [
         { name: 'You\'ll be working with', stat: 'React' },
@@ -104,28 +105,28 @@ const CompanyPage = company => {
     const thankYou = () => {
         return (
             <div className="rounded-md bg-green-50 mx-8 p-4 mt-5">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <CheckCircleIcon className="lg:h-10 h-8 lg:w-10 w-8 text-green-400" aria-hidden="true" />
+                <div className="flex">
+                    <div className="flex-shrink-0">
+                        <CheckCircleIcon className="lg:h-10 h-8 lg:w-10 w-8 text-green-400" aria-hidden="true" />
+                    </div>
+                    <div className="ml-3">
+                        <p className="lg:text-3xl text-2xl font-medium text-green-800">Thank you!</p>
+                    </div>
+                    <div className="ml-auto pl-3">
+                        <div className="-mx-1.5 -my-1.5">
+                            <button
+                                type="button"
+                                className="inline-flex bg-green-50 rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
+                                onClick={() => setThankYouVisible(false)}
+                            >
+                                <span className="sr-only">Dismiss</span>
+                                <XIcon className="h-5 w-5" aria-hidden="true" />
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div className="ml-3">
-                  <p className="lg:text-3xl text-2xl font-medium text-green-800">Thank you!</p>
-                </div>
-                <div className="ml-auto pl-3">
-                  <div className="-mx-1.5 -my-1.5">
-                    <button
-                      type="button"
-                      className="inline-flex bg-green-50 rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600"
-                      onClick={() => setThankYouVisible(false)}
-                    >
-                      <span className="sr-only">Dismiss</span>
-                      <XIcon className="h-5 w-5" aria-hidden="true" />
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
-          )
+        )
     }
 
     const getEmailSection = () => {
@@ -134,7 +135,7 @@ const CompanyPage = company => {
                 <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center">
                     <div className="lg:w-0 lg:flex-1">
                         <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-4xl" id="newsletter-headline">
-                            Get weekly alerts for web3 jobs at {cName} and others 👉
+                            Get weekly alerts for web3 jobs at {currentCompany[COMPANY_NAME]} and others 👉
                         </h2>
                     </div>
                     <div className="mt-8 lg:mt-0 lg:ml-8">
@@ -175,7 +176,7 @@ const CompanyPage = company => {
     }
 
     const genUrlWithRefer = () => {
-        return `${cUrl}${REFER_URL}`;
+        return `${currentCompany[COMPANY_URL]}${REFER_URL}`;
     }
 
     const getContent = () => {
@@ -188,17 +189,17 @@ const CompanyPage = company => {
                             <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                                 <div><img
                                     className="inline-block h-24 w-24 rounded-full"
-                                    src={cIconUrl}
+                                    src={currentCompany[COMPANY_ICON_URL]}
                                     alt=""
                                 /></div>
-                                {cName}
+                                {currentCompany[COMPANY_NAME]}
                             </span>
                         </h1>
                         <p className="mt-8 text-2xl text-gray-500 leading-8">
-                            {cDesc}
+                            {currentCompany[COMPANY_DESCRIPTION]}
                         </p>
                         <p className="mt-8 text-2xl text-gray-500 leading-8">
-                            <p>🔗: <a href={`${genUrlWithRefer()}`}>{cUrl}</a></p>
+                            <p>🔗: <a href={`${genUrlWithRefer()}`}>{currentCompany[COMPANY_URL]}</a></p>
                         </p>
                         {cards()}
                     </div>
@@ -213,7 +214,7 @@ const CompanyPage = company => {
     }
 
     return (
-        PageContainer(getContent(), {isShown: false })
+        PageContainer(getContent(), { isShown: false })
     );
 };
 

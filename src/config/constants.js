@@ -51,7 +51,7 @@ export const POST_PLAN_PRICE = 'planPrice';
 
 // URL PATHS
 export const COMPANIES_URL = '/web3-companies'
-export const COMPANY_PAGE_URL = `${COMPANIES_URL}/:cname`
+export const COMPANY_PAGE_URL = `${COMPANIES_URL}/:cname/:cid`
 export const JOBS_URL = '/web3-jobs'
 export const JOB_PAGE_URL = `${JOBS_URL}/:jtitle-:cname/:jid`
 export const JOB_TAG_URL = `${JOBS_URL}/:jtag-jobs`

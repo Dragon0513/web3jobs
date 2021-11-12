@@ -69,4 +69,13 @@ export const getAllLinkedCompanies = () => {
         )`)
 }
 
+/**
+ * 
+ * @param {int} companyId 
+ * @returns 
+ */
+ export const getSingleJob = jobId => {
+    return getAllJobs().match({ [JOB_ID]: jobId });
+}
+
 //*********END OF JOBS SECTION
